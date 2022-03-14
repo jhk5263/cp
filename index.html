@@ -172,7 +172,7 @@ function lsgc(){
                 type:"get",//请求服务器载入数据
                 //async:true,//异步属性
                 url:"https://q.stock.sohu.com/hisHq?code="+daima+"&start="+stime+"&end="+etime+"&callback = callback&rt=jsonp",
-                             dataType:'jsonp',//服务器返回json格式数据
+                             dataType:'jsonp',
                              jsonpCallback:'callback',
                              jsonp: 'callback',
                              crossDomain: true,
@@ -206,7 +206,7 @@ function lsgc(){
                     type:"get",//请求服务器载入数据
                     //async:true,//异步属性
                     url:"https://qt.gtimg.cn/q=s_"+zs1,
-                                 dataType:'html',//服务器返回json格式数据
+                                 dataType:'html',
                                  crossDomain: true,
                                  data:"{}",                         
                     success:function(zhishu){
