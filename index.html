@@ -35,6 +35,7 @@
                     <div class="login-content">
                         <div class="login-logo">
                             <span style="color:#000000">偏离值计算</span>
+                            <h6 style="color:#000000">(危险值是实时更新，点击一次代码，再点空白一次就刷新)</h6>
                         </div>
                          <div class="card">
 
@@ -57,7 +58,14 @@
                                                     <input id="pianli" type="text" placeholder="偏离值"  class="form-control" >
                                                     
                                                 </div>
-                                            </div>                                            
+                                            </div>     
+                                            <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <input id="wei" type="text" placeholder="危险值"  class="form-control" >
+                                                    
+                                                </div>
+                                            </div>                                             
                                    </div>
 
                                    
@@ -129,10 +137,12 @@ function lsgc(){
  var sj1=$("#StartTime").val();
  var daima="cn_"+$("#daima").val();
  var zs="zs_000001";
+ var zs1="sh000001"
  
  if(daima.slice(3,5)=="00"){
    
      zs="zs_399001";
+     zs1="sz399001";
  }
  var dzh=0;
  var zzh=0;
@@ -192,6 +202,27 @@ function lsgc(){
                     console.log(dzh)
                     console.log(zzh)
                     document.getElementById('pianli').value=dzh-zzh;
+                   $.ajax({
+                    type:"get",//请求服务器载入数据
+                    //async:true,//异步属性
+                    url:"https://qt.gtimg.cn/q=s_"+zs1,
+                                 dataType:'html',//服务器返回json格式数据
+                                 crossDomain: true,
+                                 data:"{}",                         
+                    success:function(zhishu){
+                        cf = zhishu.split("~");
+                          console.log(cf[5])
+                          document.getElementById('wei').value=dzh-zzh+Number(cf[5]);
+                       
+                    },
+                                error:function(xhr,type,errorThrown){
+                                      console.log(xhr.statusText);
+                                      console.log(xhr.responseText);
+                                      console.log(xhr.status);
+                                      console.log(type);
+                                      console.log(errorThrown);
+                                      }
+                   })                    
                    
                 },
                             error:function(xhr,type,errorThrown){
