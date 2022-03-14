@@ -176,7 +176,9 @@ function lsgc(){
      }
  }
  else{stime=sj1;}
- 
+  $("#yidong").empty();
+  var obj=document.getElementById('yidong');
+  obj.add(new Option("异动/停牌展示",0));
  mama=$("#daima").val();
 
  
@@ -245,7 +247,7 @@ function lsgc(){
                          shijian=xin.data.list[c].notice_date.split(" ");
                          shijian=shijian[0];
                          neirong=xin.data.list[c].title;
-                         var obj=document.getElementById('yidong');
+                         
      
                          if(neirong.indexOf("波动")!=-1 || neirong.indexOf("停牌")!=-1 || neirong.indexOf("关注函")!=-1){
                              yd=yd+1;
