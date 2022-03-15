@@ -49,7 +49,7 @@
                                             <div class="row">
                                               <div class="col-lg-2"></div>
                                                 <div class="col-lg-8">
-                                                    <input id="daima" type="text" placeholder="股票码(点这输码，输完点空白处既出数据)" class="form-control"  name="example-input-small" lay-key="1" onblur="lsgc()" onclick="qingkong()">
+                                                    <input id="daima" type="text" placeholder="股票码(点这输码，输完点空白处出数据)" class="form-control"  name="example-input-small" lay-key="1" onblur="lsgc()" onclick="qingkong()">
                                                     
                                                 </div>
                
@@ -181,7 +181,9 @@ function lsgc(){
  if(pianli!=""){
      var tou = document.getElementById("tou");
     remove_md = tou.lastElementChild;
-    tou.removeChild(remove_md);    
+    if(remove_md!=null){
+    tou.removeChild(remove_md);  
+    }
  }
  if(daima.slice(3,5)=="00"){
    
@@ -196,14 +198,12 @@ function lsgc(){
  var bd=0;
  if(sj==sj1){
      for(var i=1;i<10;i++){
-         console.log(i)
          var curTime = new Date().getTime();
          var startDate = curTime - (i * 3600 * 24 * 1000);
          var time = new Date(startDate);
           if(time.getDay() != 0 && time.getDay() != 6){
               js=js+1;
               stime=time.format('Ymd');
-              console.log(stime)
           }
           if (js==2){
               break;
@@ -231,16 +231,17 @@ obj1.add(new Option("3点后当日收盘连板价",0));
                              //data:"{}",
                              ContentType:'application/javascript',
                 success:function(result){
+                
+                    if(result.length!=undefined){
                     var zzt=Number(result[0].hq[0][2]);
                     for(var aa=1;aa<11;aa++){
                              zzt=(zzt*1.1).toFixed(2);
                              nr=aa+"板:"+zzt;
-                             console.log(zzt)
                              obj1.add(new Option(nr,aa));                        
                     }
                     for(var a=0;a<result[0].hq.length;a++){
                         var zhi=result[0].hq[a][4].replace("%","");
-                        console.log(zhi)
+                        console.log("前"+(a+1)+"天涨幅:"+zhi)
                         if(Number(zhi)>0){dzh=dzh+Number(zhi);}
                         
                     }
@@ -256,11 +257,11 @@ obj1.add(new Option("3点后当日收盘连板价",0));
                 success:function(res){
                     for(var b=0;b<res[0].hq.length;b++){
                         var zhi=res[0].hq[b][4].replace("%","");
-                        console.log(zhi)
+                        console.log("前"+(b+1)+"天指数涨幅:"+zhi)
                         zzh=zzh+Number(zhi);
                     }
-                    console.log(dzh)
-                    console.log(zzh)
+                    console.log("个股涨幅合:"+dzh)
+                    console.log("指数涨幅合:"+zzh)
                     document.getElementById('pianli').value=dzh-zzh;
                    $.ajax({
                     type:"get",//请求服务器载入数据
@@ -271,7 +272,7 @@ obj1.add(new Option("3点后当日收盘连板价",0));
                                  data:"{}",                         
                     success:function(zhishu){
                         cf = zhishu.split("~");
-                          console.log(cf[5])
+                          console.log("实时指数涨幅:"+cf[5])
                           document.getElementById('wei').value=dzh-zzh+Number(cf[5]);
                $.ajax({
                 type:"get",//请求服务器载入数据
@@ -284,7 +285,6 @@ obj1.add(new Option("3点后当日收盘连板价",0));
                              
                              //data:"{}",                         
                 success:function(xin){
-                    console.log(xin.data)
                     yd=0;
                     document.getElementById('daima').value=mama+"【"+xin.data.list[0].codes[0].short_name+"】"
                     for(var c=0;c<xin.data.list.length;c++){
@@ -319,7 +319,6 @@ obj1.add(new Option("3点后当日收盘连板价",0));
                                  bd=bd+1;
                              }
                              nr=xin.data.list[c].columns[0].column_name+"【"+shijian+"】";
-                             console.log(nr)
                              obj.add(new Option(nr,yd));
                          }
                          
@@ -329,7 +328,6 @@ obj1.add(new Option("3点后当日收盘连板价",0));
                            }
                      
                     }
-                     console.log(bd)
                       var tou = document.getElementById("tou");
                       var h55 =document.createElement("h4");
                       h55.innerHTML="10日内异动:【"+bd+"次】";
@@ -357,7 +355,7 @@ obj1.add(new Option("3点后当日收盘连板价",0));
                                   console.log(errorThrown);
                                   }
                })
-                },
+                }else{alert("输入错误重新输入")}},
                             error:function(xhr,type,errorThrown){
                                   console.log(xhr.statusText);
                                   console.log(xhr.responseText);
@@ -366,6 +364,7 @@ obj1.add(new Option("3点后当日收盘连板价",0));
                                   console.log(errorThrown);
 
                              }
+                             
             })   
    
     
