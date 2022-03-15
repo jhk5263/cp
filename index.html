@@ -38,6 +38,8 @@
                             <h6 style="color:#000000">(危险值是实时更新，点击一次代码，再点空白一次就刷新)</h6>
                         </div>
                          <div class="card">
+                             <div class="card-title" id="tou">
+                                 </div>
 
                                                                         <div class="card-body">
                                     <div class="input-sizes">
@@ -70,12 +72,21 @@
                                            <div class="row">
                                               <div class="col-lg-2"></div>
                                                 <div class="col-lg-8">
-                                                    <select class="form-control" id="yidong"  style="margin-bottom:-3%">
+                                                    <select class="form-control" id="yidong"  >
 																<option value="全部店铺">异动/停牌展示</option>
 													</select>
                                                     
                                                 </div>
                                             </div>  
+                                           <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <select class="form-control" id="zt"  style="margin-bottom:-3%">
+																<option value="">3点后当日收盘连板价</option>
+													</select>
+                                                    
+                                                </div>
+                                            </div>                                              
                                    </div>
 
                                    
@@ -119,6 +130,9 @@ function keyListener(e) {
 SubInfo();
     }
 }
+function charu(soure, start, newStr){   
+   return soure.slice(0, start) + newStr + soure.slice(start);
+}
 $(function(){
     laydate.render({
   elem: '#EndTime'
@@ -159,6 +173,7 @@ function lsgc(){
  var js=0;
  var stime=0;
  var etime=sj;
+ var bd=0;
  if(sj==sj1){
      for(var i=1;i<10;i++){
          console.log(i)
@@ -176,9 +191,12 @@ function lsgc(){
      }
  }
  else{stime=sj1;}
-  $("#yidong").empty();
-  var obj=document.getElementById('yidong');
-  obj.add(new Option("异动/停牌展示",0));
+ $("#yidong").empty();
+  $("#zt").empty();
+var obj=document.getElementById('yidong');
+var obj1=document.getElementById('zt');
+obj.add(new Option("异动/停牌展示",0));
+obj1.add(new Option("3点后当日收盘连板价",0));
  mama=$("#daima").val();
 
  
@@ -193,7 +211,13 @@ function lsgc(){
                              //data:"{}",
                              ContentType:'application/javascript',
                 success:function(result){
-                    
+                    var zzt=Number(result[0].hq[0][2]);
+                    for(var aa=1;aa<11;aa++){
+                             zzt=(zzt*1.1).toFixed(2);
+                             nr=aa+"板:"+zzt;
+                             console.log(zzt)
+                             obj1.add(new Option(nr,aa));                        
+                    }
                     for(var a=0;a<result[0].hq.length;a++){
                         var zhi=result[0].hq[a][4].replace("%","");
                         console.log(zhi)
@@ -240,28 +264,57 @@ function lsgc(){
                              
                              //data:"{}",                         
                 success:function(xin){
-                    
+                    console.log(xin.data)
                     yd=0;
+                    document.getElementById('daima').value=mama+"【"+xin.data.list[0].codes[0].short_name+"】"
                     for(var c=0;c<xin.data.list.length;c++){
                          code=xin.data.list[c].art_code;
                          shijian=xin.data.list[c].notice_date.split(" ");
                          shijian=shijian[0];
                          neirong=xin.data.list[c].title;
-                         
-     
+
                          if(neirong.indexOf("波动")!=-1 || neirong.indexOf("停牌")!=-1 || neirong.indexOf("关注函")!=-1){
                              yd=yd+1;
-
+                             zzsj=charu(etime,4,"-");
+                             zzsj=charu(zzsj,7,"-");
+                             jjs=0;
+                             for(var qwe=1;qwe<20;qwe++){
+                                  curTime1 = new Date(Date.parse(zzsj)).getTime();
+                                  startDate1 = curTime1 - (qwe * 3600 * 24 * 1000);
+                                  time1 = new Date(startDate1);
+                                  if(time1.getDay() != 0 && time1.getDay() != 6){
+                                      jjs=jjs+1;
+                                      
+                                  }
+                                  if (jjs==10){
+                                      
+                                      break;
+                                  }
+                             }                             
+                             
+                             
+                             zzsj=startDate1;
+                             ggsj=(Date.parse(shijian));
+                             if(neirong.indexOf("波动")!=-1 && ggsj>=zzsj){
+                                 bd=bd+1;
+                             }
                              nr=xin.data.list[c].columns[0].column_name+"【"+shijian+"】";
+                             console.log(nr)
                              obj.add(new Option(nr,yd));
                          }
-
+                         
                          if (yd==10){
+                              
                                break;
                            }
                      
                     }
-
+                     console.log(bd)
+                      var tou = document.getElementById("tou");
+                      var h55 =document.createElement("h4");
+                      h55.innerHTML="10日内异动:【"+bd+"次】";
+                      h55.style.color="red";
+                      tou.appendChild(h55);
                 },
                })                     
                        
@@ -294,7 +347,7 @@ function lsgc(){
 
                              }
             })   
-  
+   
     
 }
 
