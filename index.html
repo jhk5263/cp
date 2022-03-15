@@ -35,23 +35,25 @@
                     <div class="login-content">
                         <div class="login-logo">
                             <span style="color:#000000">偏离值计算</span>
-                            <h6 style="color:#000000">(危险值实时更新，点代码框，再点空白处既刷新)</h6>
+                            <h6 style="color:#000000">(危险值实时更新，点刷新按钮)</h6>
                         </div>
                          <div class="card">
                              <div class="card-title" id="tou" style="margin-bottom:-5%">
                                  </div>
 
-                                                                        <div class="card-body">
+                                <div class="card-body">
                                     <div class="input-sizes">
                                         <form class="form-horizontal fc-view" >
-
-                                                    
-                                   <div class="form-group">
+                                                  
+                                   <div class="form-group" style="top">
                                             <div class="row">
                                               <div class="col-lg-2"></div>
-                                                <div class="col-lg-8">
-                                                    
+                                                <div class="col-lg-6">
                                                     <input id="daima" type="text" placeholder="股票代码" class="form-control"  name="example-input-small" lay-key="1" onblur="lsgc()" onclick="qingkong()">
+                                                    
+                                                </div>
+                                            <div class="col-lg-2">
+                                          <button onclick="lsgc()"type="button"  class="btn btn-success btn-flat btn-addon m-b-10 m-l-5"><i class="ti-layers-alt"></i>刷新</button>  
                                                     
                                                 </div>
                                             </div>
@@ -106,10 +108,12 @@
                                                     <input id="EndTime" lay-key="8" type="text" class="form-control" style="margin-bottom:-3%">
                                                 </div>
                                             </div>
+                                            
                                             </div>
-                                            <div class="row">
-                                               <p align="center" style="margin-bottom:-10%;margin-left:32%">@感恩KEN哥、感恩佛系群</p>
-                                            </div>
+                                            <div class="row"align="right">
+                                              
+                                          <p align="center" style="margin-bottom:-10%;margin-left:32%">@感恩KEN哥、感恩佛系群</p>
+                                    </div>
                                         
                                         </form>
                                     </div>
@@ -308,7 +312,7 @@ obj1.add(new Option("3点后当日收盘连板价",0));
                              
                              zzsj=startDate1;
                              ggsj=(Date.parse(shijian));
-                             if(neirong.indexOf("波动")!=-1 && ggsj>=zzsj  && neirong.indexOf("回复")==-1){
+                             if(neirong.indexOf("波动")!=-1 && ggsj>=zzsj && neirong.indexOf("回复")==-1){
                                  bd=bd+1;
                              }
                              nr=xin.data.list[c].columns[0].column_name+"【"+shijian+"】";
