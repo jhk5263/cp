@@ -306,7 +306,7 @@ obj1.add(new Option("3点后当日收盘连板价",0));
                                       jjs=jjs+1;
                                       
                                   }
-                                  if (jjs==10){
+                                  if (jjs==11){
                                       
                                       break;
                                   }
@@ -315,7 +315,7 @@ obj1.add(new Option("3点后当日收盘连板价",0));
                              
                              zzsj=startDate1;
                              ggsj=(Date.parse(shijian));
-                             if(neirong.indexOf("波动")!=-1 && ggsj>=zzsj && neirong.indexOf("回复")==-1){
+                             if(neirong.indexOf("波动")!=-1 && ggsj>=zzsj && neirong.indexOf("回")==-1){
                                  bd=bd+1;
                              }
                              nr=xin.data.list[c].columns[0].column_name+"【"+shijian+"】";
