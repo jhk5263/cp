@@ -35,7 +35,7 @@
                     <div class="login-content">
                         <div class="login-logo">
                             <span style="color:#000000"onclick="shuaxin()">偏离值计算</span>
-                               <p onclick="shuaxin()" >(深证4次异动停牌)</p>
+                               <p onclick="shuaxin()" >(深证主板4次异动+关注函=停牌)</p>
                             <p onclick="shuaxin()" style="color:green">→【危险值实时更新，点我刷新】←</p>
                         </div>
                          <div class="card">
@@ -157,6 +157,13 @@ $(function(){
 
 });
 function shuaxin(){
+     if(pianli!=""){
+     var tou = document.getElementById("tou");
+    remove_md = tou.lastElementChild;
+    if(remove_md!=null){
+    tou.removeChild(remove_md);  
+    }
+ }
     var daima=$("#daima").val();
     daima=daima.slice(0,6);
     console.log(daima)
