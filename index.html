@@ -58,17 +58,17 @@
                                             <div class="row">
                                               <div class="col-lg-2"></div>
                                                 <div class="col-lg-8">
-                                                    <input id="pianli" type="text" placeholder="偏离值(晚12点-盘中显示前2天值，之后显示3天)"  class="form-control" >
+                                                    <input id="wei" type="text" placeholder="盘中偏离值(盘中看这)"  class="form-control" >
                                                     
                                                 </div>
-                                            </div>     
+                                            </div>  
                                             <div class="row">
                                               <div class="col-lg-2"></div>
                                                 <div class="col-lg-8">
-                                                    <input id="wei" type="text" placeholder="盘中偏离值"  class="form-control" >
+                                                    <input id="pianli" type="text" placeholder="盘后偏离值(盘后看这)"  class="form-control" >
                                                     
                                                 </div>
-                                            </div>        
+                                            </div>                                               
                                            <div class="row">
                                               <div class="col-lg-2"></div>
                                                 <div class="col-lg-8">
@@ -309,7 +309,7 @@ obj1.add(new Option("3点后当日收盘连板价",0));
                     }
                     console.log("个股涨幅合:"+dzh)
                     console.log("指数涨幅合:"+zzh)
-                    document.getElementById('pianli').value=dzh-zzh;
+                    document.getElementById('pianli').value="盘后偏离值:"+(dzh-zzh).toFixed(2);;
                    $.ajax({
                     type:"get",//请求服务器载入数据
                     //async: false,
@@ -321,7 +321,7 @@ obj1.add(new Option("3点后当日收盘连板价",0));
                         cf = zhishu.split("~");
                           console.log("实时指数涨幅:"+cf[5])
                           console.log("实时个股涨幅:"+cf[15])
-                          document.getElementById('wei').value=((dzh+Number(cf[15]))-(zzh+Number(cf[5]))).toFixed(2);
+                          document.getElementById('wei').value="盘中偏离值:"+((dzh+Number(cf[15]))-(zzh+Number(cf[5]))).toFixed(2);
                $.ajax({
                 type:"get",//请求服务器载入数据
                // async: false,
@@ -533,7 +533,7 @@ obj1.add(new Option("3点后当日收盘连板价",0));
                     }
                     console.log("个股涨幅合:"+dzh)
                     console.log("指数涨幅合:"+zzh)
-                    document.getElementById('pianli').value=dzh-zzh;
+                    document.getElementById('pianli').value="盘后偏离值:"+(dzh-zzh).toFixed(2);
                    $.ajax({
                     type:"get",//请求服务器载入数据
                     //async: false,
@@ -545,7 +545,7 @@ obj1.add(new Option("3点后当日收盘连板价",0));
                         cf = zhishu.split("~");
                           console.log("实时指数涨幅:"+cf[5])
                           console.log("实时个股涨幅:"+cf[15])
-                          document.getElementById('wei').value=((dzh+Number(cf[15]))-(zzh+Number(cf[5]))).toFixed(2);
+                          document.getElementById('wei').value="盘中偏离值:"+((dzh+Number(cf[15]))-(zzh+Number(cf[5]))).toFixed(2);
                $.ajax({
                 type:"get",//请求服务器载入数据
                // async: false,
