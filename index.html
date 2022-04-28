@@ -191,13 +191,13 @@ console.log(mingzi)
                             yd=yd+1;
                             if(xw.list[bs].Type==2){
                               zongjia=zongjia-Number(xw.list[bs].Sell)
-                                nr=xw.list[bs].Time+"卖:"+xw.list[bs].Sell;
+                                nr=xw.list[bs].Time+"S:"+xw.list[bs].Sell;
                                 obj1.add(new Option(nr,yd));                              
                             }
                             else
                             {
                               zongjia=zongjia+Number(xw.list[bs].Buy)
-                                nr=xw.list[bs].Time+"买:"+xw.list[bs].Buy;
+                                nr=xw.list[bs].Time+"B:"+xw.list[bs].Buy;
                                 obj1.add(new Option(nr,yd));
                             }
                         }
