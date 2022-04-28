@@ -21,7 +21,7 @@
            <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
            <link href="assets/css/style.css" rel="stylesheet">
            <link href="assets/css/lib/themify-icons.css" rel="stylesheet">
-           <title>偏离值计算</title>
+           <title>龙虎榜统计</title>
     <script>
     </script>
 </head>
@@ -34,9 +34,7 @@
                 <div class="col-lg-6">
                     <div class="login-content">
                         <div class="login-logo">
-                            <span style="color:#000000"onclick="shuaxin()">偏离值计算</span>
-                               <p onclick="shuaxin()" >(深证4次异动+关注函=停牌)</p>
-                            <p onclick="shuaxin()" style="color:green">→【盘中偏离值实时更新，点我刷新】←</p>
+                            <span style="color:#000000">龙虎榜统计</span>
                         </div>
                          <div class="card">
                              <div class="card-title" id="tou" style="margin-bottom:-5%">
@@ -50,30 +48,18 @@
                                             <div class="row">
                                               <div class="col-lg-2"></div>
                                                 <div class="col-lg-8">
-                                                    <input id="daima" type="text" placeholder="点这输码支持中文全称，点空白处出数据" class="form-control"  name="example-input-small" lay-key="1" onblur="lsgc()" onclick="qingkong()">
+                                                    <input id="daima" type="text" placeholder="点这输股票名或代码，然后点席位选择" class="form-control"  name="example-input-small" lay-key="1" onblur="lsgc()" onclick="qingkong()">
                                                     
                                                 </div>
                
                                             </div>
-                                            <div class="row">
-                                              <div class="col-lg-2"></div>
-                                                <div class="col-lg-8">
-                                                    <input id="wei" type="text" placeholder="盘中偏离值(盘中看这,盘后5点左右失效)"  class="form-control" >
-                                                    
-                                                </div>
-                                            </div>  
-                                            <div class="row">
-                                              <div class="col-lg-2"></div>
-                                                <div class="col-lg-8">
-                                                    <input id="pianli" type="text" placeholder="盘后偏离值(盘后看这，盘后5点左右生效)"  class="form-control" >
-                                                    
-                                                </div>
-                                            </div>                                               
+
+                                             
                                            <div class="row">
                                               <div class="col-lg-2"></div>
                                                 <div class="col-lg-8">
-                                                    <select class="form-control" id="yidong"  >
-																<option value="全部店铺">异动/停牌展示</option>
+                                                    <select class="form-control" id="xiwei"  >
+																<option value="全部店铺">席位选择</option>
 													</select>
                                                     
                                                 </div>
@@ -81,36 +67,27 @@
                                            <div class="row">
                                               <div class="col-lg-2"></div>
                                                 <div class="col-lg-8">
-                                                    <select class="form-control" id="zt"  style="margin-bottom:-3%">
-																<option value="">3点后当日收盘连板价</option>
+                                                    <select class="form-control" id="mingxi"  style="margin-bottom:-3%">
+																<option value="">买入/卖出明细</option>
 													</select>
                                                     
                                                 </div>
                                             </div>                                              
                                    </div>
-
-                                   
-                                     <div class="form-group" >
                                             <div class="row">
                                               <div class="col-lg-2"></div>
                                                 <div class="col-lg-8">
-                                                      <input id="StartTime" type="text"  class="form-control" style="margin-bottom:-3%">
-                                                    </div>
-                                            </div>
-                                            </div>
+                                                    <input id="qian" type="text" placeholder="点这统计上榜金额，点后可看买入卖出明细" class="form-control"  name="example-input-small" lay-key="1" onblur="jiner()" onclick="qingkong1()">
                                                     
-                                            <div class="form-group">
-                                            <div class="row">
-                                              <div class="col-lg-2"></div>
-                                                <div class="col-lg-8">
-                                                    <input id="EndTime" lay-key="8" type="text" class="form-control" style="margin-bottom:-3%">
                                                 </div>
+               
                                             </div>
-                                            
-                                            </div>
+                                   
+
+                                                    
+
                                             <div class="row"align="right">
                                               
-                                          <p align="center" style="margin-bottom:-10%;margin-left:32%">@感恩KEN哥、感恩佛系群</p>
                                     </div>
                                         
                                         </form>
@@ -156,24 +133,16 @@ $(function(){
 });
 
 });
-function shuaxin(){
-     if(pianli!=""){
-     var tou = document.getElementById("tou");
-    remove_md = tou.lastElementChild;
-    if(remove_md!=null){
-    tou.removeChild(remove_md);  
-    }
- }
-    var daima=$("#daima").val();
-    daima=daima.slice(0,6);
-    console.log(daima)
-    document.getElementById('daima').value=daima;
-    lsgc();
-}
+
 
 function qingkong(){
 
     document.getElementById('daima').value="";
+    
+}
+function qingkong1(){
+
+    document.getElementById('qian').value="";
     
 }
 function encodeToGb2312(str){
@@ -193,10 +162,66 @@ function encodeToGb2312(str){
     return strOut;
 }
 
+function jiner(){
+    var obj=document.getElementById('xiwei');
+    index=obj.selectedIndex;
+    bid=obj.options[index].value;
+      $("#mingxi").empty();
+      var obj1=document.getElementById('mingxi');
+      obj1.add(new Option("买入/卖出明细",0)); 
+    mingzi=$("#daima").val();
+var regex2 = /\【(.+?)\】/gi;   
+    mingzi=mingzi.replaceAll(regex2,"$1");
+    regex2=/[0-9]+/gi;
+    mingzi=mingzi.replace(regex2,"");
+var zongjia=0;
+var yd=0;
+console.log(mingzi)
+                   $.ajax({
+                type:"get",//请求服务器载入数据
+                //async: false,
+                url:"https://applhb.longhuvip.com/w1/api/index.php?apiv=w29&PhoneOSNew=2&c=Business&BusinessID="+bid+"&st=150&a=PosDoNewStockLog",
+                dataType:'html',
+                success:function(co){
+                    xw=JSON.parse(co)
+
+                    for(var i=0;i<xw.list.length-1;i++){
+                        bs=xw.list.length-1-i;
+                        if(xw.list[bs].Name==mingzi){
+                            yd=yd+1;
+                            if(xw.list[bs].Type==2){
+                              zongjia=zongjia-Number(xw.list[bs].Sell)
+                                nr=xw.list[bs].Time+"卖:"+xw.list[bs].Sell;
+                                obj1.add(new Option(nr,yd));                              
+                            }
+                            else
+                            {
+                              zongjia=zongjia+Number(xw.list[bs].Buy)
+                                nr=xw.list[bs].Time+"买:"+xw.list[bs].Buy;
+                                obj1.add(new Option(nr,yd));
+                            }
+                        }
+                    }
+document.getElementById('qian').value="上榜金额统计："+zongjia/100000000+"亿";                    
+                }
+                   })
+}
+
+
+
 function lsgc(){
 var daima="";
 var mama="";
+var dyyd="";
+var youguan="";
+  $("#xiwei").empty();
+  $("#mingxi").empty();
+var obj=document.getElementById('xiwei');
+var obj1=document.getElementById('mingxi');
+obj.add(new Option("席位选择",0));
+obj1.add(new Option("买入/卖出明细",0));
 if(isNaN($("#daima").val())==true){
+
     bianma=$URL.encode($("#daima").val());
     console.log(bianma)
                    $.ajax({
@@ -210,443 +235,81 @@ if(isNaN($("#daima").val())==true){
                              //data:"{}",
                              ContentType:'application/javascript',
                 success:function(co){
-                    console.log(co.result.length)
+
                     if(co.result.length==0){alert("输入有误，重新输入")}
-                    daima=co.result[0][0];
-                    mama=co.result[0][1];
-                   
- var sj =$("#EndTime").val();
- var sj1=$("#StartTime").val();
-console.log(daima)
- var pianli=$("#pianli").val();
- var zs="zs_000001";
- var zs1="sh000001";
- var nali="上证";
- if(pianli!=""){
-     var tou = document.getElementById("tou");
-    remove_md = tou.lastElementChild;
-    if(remove_md!=null){
-    tou.removeChild(remove_md);  
-    }
- }
-
- if(daima.slice(3,5)=="00"){
-   
-     zs="zs_399001";
-     zs1="sz399001";
-     nali="深证"
- }
- var dzh=0;
- var zzh=0;
- var js=0;
- var stime=0;
- var etime=sj;
- var bd=0;
- var jsbd=0;
- if(sj==sj1){
-     for(var i=1;i<10;i++){
-         var curTime = new Date().getTime();
-         var startDate = curTime - (i * 3600 * 24 * 1000);
-         var time = new Date(startDate);
-          if(time.getDay() != 0 && time.getDay() != 6){
-              js=js+1;
-              stime=time.format('Ymd');
-          }
-          if (js==2){
-              break;
-          }
-     }
- }
- else{stime=sj1;}
- $("#yidong").empty();
-  $("#zt").empty();
-var obj=document.getElementById('yidong');
-var obj1=document.getElementById('zt');
-obj.add(new Option("异动/停牌展示",0));
-obj1.add(new Option("3点后当日收盘连板价",0));
-
-
- 
-            $.ajax({
-                type:"get",//请求服务器载入数据
-                //async: false,
-                url:"https://q.stock.sohu.com/hisHq?code="+daima+"&start="+stime+"&end="+etime+"&callback = callback&rt=jsonp",
-                             dataType:'jsonp',//服务器返回json格式数据
-                             jsonpCallback:'callback',
-                             jsonp: 'callback',
-                             crossDomain: true,
-                             //data:"{}",
-                             ContentType:'application/javascript',
-                success:function(result){
-                    console.log(daima)
-                    if(result.length!=undefined){
-                    var zzt=Number(result[0].hq[0][2]);
-                    for(var aa=1;aa<11;aa++){
-                             zzt=(zzt*1.1).toFixed(2);
-                             nr=aa+"板:"+zzt;
-                             obj1.add(new Option(nr,aa));                        
-                    }
-                    for(var a=0;a<result[0].hq.length;a++){
-                        var zhi=result[0].hq[a][4].replace("%","");
-                        console.log("前"+(a+1)+"天涨幅:"+zhi)
-                        if(Number(zhi)>0){dzh=dzh+Number(zhi);}
-                        
-                    }
-               $.ajax({
-                type:"get",//请求服务器载入数据
-                //async: false,
-                url:"https://q.stock.sohu.com/hisHq?code="+zs+"&start="+stime+"&end="+etime+"&callback = callback&rt=jsonp",
-                             dataType:'jsonp',//服务器返回json格式数据
-                             jsonpCallback:'callback',
-                             jsonp: 'callback',
-                             crossDomain: true,
-                             data:"{}",                         
-                success:function(res){
-                    for(var b=0;b<res[0].hq.length;b++){
-                        var zhi=res[0].hq[b][4].replace("%","");
-                        console.log("前"+(b+1)+"天指数涨幅:"+zhi)
-                        zzh=zzh+Number(zhi);
-                    }
-                    console.log("个股涨幅合:"+dzh)
-                    console.log("指数涨幅合:"+zzh)
-                    document.getElementById('pianli').value="盘后偏离值:"+(dzh-zzh).toFixed(2);;
+                    daima=co.result[0][1];
+                    mama=co.result[0][2];
+                    mama=mama.replace(/<[^>]+>/g,"");
+document.getElementById('daima').value=daima+"【"+mama+"】";
                    $.ajax({
-                    type:"get",//请求服务器载入数据
-                    //async: false,
-                    url:"https://qt.gtimg.cn/q=s_"+zs1+",s_"+zs1.slice(0,2)+mama,
-                                 dataType:'html',//服务器返回json格式数据
-                                 crossDomain: true,
-                                 data:"{}",                         
-                    success:function(zhishu){
-                        cf = zhishu.split("~");
-                          console.log("实时指数涨幅:"+cf[5])
-                          console.log("实时个股涨幅:"+cf[15])
-                          document.getElementById('wei').value="盘中偏离值:"+((dzh+Number(cf[15]))-(zzh+Number(cf[5]))).toFixed(2);
-               $.ajax({
-                type:"get",//请求服务器载入数据
-               // async: false,
-                url:"https://np-anotice-stock.eastmoney.com/api/security/ann?page_size=50&page_index=1&ann_type=A&client_source=web&stock_list="+mama+"&f_node=0&s_node=0&rt=jsonp",
-                             dataType:'jsonp',//服务器返回json格式数据
-                             jsonpCallback:'cb',
-                             jsonp: 'cb',
-                             crossDomain: true,
-                             
-                             //data:"{}",                         
-                success:function(xin){
-                    yd=0;
-                    document.getElementById('daima').value=mama+"【"+xin.data.list[0].codes[0].short_name+"】"
-                    for(var c=0;c<xin.data.list.length;c++){
-                         code=xin.data.list[c].art_code;
-                         shijian=xin.data.list[c].notice_date.split(" ");
-                         shijian=shijian[0];
-                         console.log(Date.parse(new Date(shijian)))
-                         neirong=xin.data.list[c].title;
-                         if(neirong.indexOf("波动")!=-1 || neirong.indexOf("停牌")!=-1 || neirong.indexOf("关注函")!=-1){
-                             yd=yd+1;
-                             zzsj=charu(etime,4,"-");
-                             zzsj=charu(zzsj,7,"-");
-                             jjs=0;
-                             for(var qwe=1;qwe<20;qwe++){//找出10天前是哪一个日期
-                                 
-                                  curTime1 = new Date(Date.parse(zzsj)).getTime();
-                                  startDate1 = curTime1 - (qwe * 3600 * 24 * 1000);
-                                  time1 = new Date(startDate1);
-                                  if(time1.getDay() != 0 && time1.getDay() != 6){
-                                      jjs=jjs+1;
-                                  }
-                                  if (jjs==9){
-                                      
-                                      break;
-                                  }
-                             }                             
-                             
-                             
-                             zzsj=startDate1;
-                             console.log(zzsj)
-                             if(new Date(Date.parse(shijian))==zzsj&&neirong.indexOf("波动")!=-1&&neirong.indexOf("回")==-1){
-                                 jsbd=jsbd+1;
-                             }
-                             ggsj=(Date.parse(shijian));
-                             if(neirong.indexOf("波动")!=-1 && ggsj>=zzsj && neirong.indexOf("回")==-1){
-                                 bd=bd+1;
-                             }
-                             nr=xin.data.list[c].columns[0].column_name+"【"+shijian+"】";
-                             obj.add(new Option(nr,yd));
-                         }
-                         
-                         if (yd==10){
-                              
-                               break;
-                           }
-                     
+                type:"post",//请求服务器载入数据
+                //async: false,
+                url:"https://applhb.longhuvip.com/w1/api/index.php?apiv=w29&PhoneOSNew=2&VerSion=5.4.0.3&c=Stock&a=GetNewOneStockInfo&Type=0&StockID="+daima,
+                             dataType:'html',//服务器返回json格式数据
+                             //jsonpCallback:'cb',
+                             //jsonp: 'cb',
+                             //crossDomain: true,
+                            // data:"{}",
+                             //ContentType:'application/javascript',
+                success:function(co1){
+                    xw=JSON.parse(co1)
+                    for(var i=0;i<xw.List[0].BuyList.length;i++){
+                    nr=xw.List[0].BuyList[i].Name;
+                    yd=xw.List[0].BuyList[i].ID;
+                    obj.add(new Option(nr,yd));
+                    nr=xw.List[0].SellList[i].Name;
+                    yd=xw.List[0].SellList[i].ID;
+                    obj.add(new Option(nr,yd));                    
                     }
-                      var tou = document.getElementById("tou");
-                      var h55 =document.createElement("h4");
-                      if(jsbd!=0){
-                          h55.innerHTML="10日内异动:【"+bd+"次】明天减少【"+jsbd+"次异动】"+"《"+nali+"》";
-                      }
-                      else{
-                          h55.innerHTML="10日内异动:【"+bd+"次】"+"《"+nali+"》";
-                      }
-                      h55.style.color="red";
-                      tou.appendChild(h55);
+                   console.log(xw)
                 },
-               })                     
-                       
-                    },
-                                error:function(xhr,type,errorThrown){
-                                      console.log(xhr.statusText);
-                                      console.log(xhr.responseText);
-                                      console.log(xhr.status);
-                                      console.log(type);
-                                      console.log(errorThrown);
-                                      }
-                   })                    
-                   
-                },
-                            error:function(xhr,type,errorThrown){
-                                  console.log(xhr.statusText);
-                                  console.log(xhr.responseText);
-                                  console.log(xhr.status);
-                                  console.log(type);
-                                  console.log(errorThrown);
-                                  }
-               })
-                }else{alert("输入错误重新输入")}},
-                            error:function(xhr,type,errorThrown){
-                                  console.log(xhr.statusText);
-                                  console.log(xhr.responseText);
-                                  console.log(xhr.status);
-                                  console.log(type);
-                                  console.log(errorThrown);
-
-                             }
-                             
-            })                   
-                },
-                            error:function(xhr,type,errorThrown){
-                                  console.log(xhr.statusText);
-                                  console.log(xhr.responseText);
-                                  console.log(xhr.status);
-                                  console.log(type);
-                                  console.log(errorThrown);
-                                  }                
-               })
+                   })
+            
+             },
+         })
 
 }    
 else{ 
-     daima="cn_"+$("#daima").val();
-     mama=$("#daima").val();
-
-
- var sj =$("#EndTime").val();
- var sj1=$("#StartTime").val();
-console.log(daima)
- var pianli=$("#pianli").val();
- var zs="zs_000001";
- var zs1="sh000001";
- var nali="上证";
- if(pianli!=""){
-     var tou = document.getElementById("tou");
-    remove_md = tou.lastElementChild;
-    if(remove_md!=null){
-    tou.removeChild(remove_md);  
-    }
- }
-
- if(daima.slice(3,5)=="00"){
-   
-     zs="zs_399001";
-     zs1="sz399001";
-     nali="深证"
- }
- var dzh=0;
- var zzh=0;
- var js=0;
- var stime=0;
- var etime=sj;
- var bd=0;
- var jsbd=0;
- if(sj==sj1){
-     for(var i=1;i<10;i++){
-         var curTime = new Date().getTime();
-         var startDate = curTime - (i * 3600 * 24 * 1000);
-         var time = new Date(startDate);
-          if(time.getDay() != 0 && time.getDay() != 6){
-              js=js+1;
-              stime=time.format('Ymd');
-          }
-          if (js==2){
-              break;
-          }
-     }
- }
- else{stime=sj1;}
- $("#yidong").empty();
-  $("#zt").empty();
-var obj=document.getElementById('yidong');
-var obj1=document.getElementById('zt');
-obj.add(new Option("异动/停牌展示",0));
-obj1.add(new Option("3点后当日收盘连板价",0));
-
-
- 
-            $.ajax({
-                type:"get",//请求服务器载入数据
-                //async: false,
-                url:"https://q.stock.sohu.com/hisHq?code="+daima+"&start="+stime+"&end="+etime+"&callback = callback&rt=jsonp",
-                             dataType:'jsonp',//服务器返回json格式数据
-                             jsonpCallback:'callback',
-                             jsonp: 'callback',
-                             crossDomain: true,
-                             //data:"{}",
-                             ContentType:'application/javascript',
-                success:function(result){
-                    console.log(daima)
-                    if(result.length!=undefined){
-                    var zzt=Number(result[0].hq[0][2]);
-                    for(var aa=1;aa<11;aa++){
-                             zzt=(zzt*1.1).toFixed(2);
-                             nr=aa+"板:"+zzt;
-                             obj1.add(new Option(nr,aa));                        
-                    }
-                    for(var a=0;a<result[0].hq.length;a++){
-                        var zhi=result[0].hq[a][4].replace("%","");
-                        console.log("前"+(a+1)+"天涨幅:"+zhi)
-                        if(Number(zhi)>0){dzh=dzh+Number(zhi);}
-                        
-                    }
-               $.ajax({
-                type:"get",//请求服务器载入数据
-                //async: false,
-                url:"https://q.stock.sohu.com/hisHq?code="+zs+"&start="+stime+"&end="+etime+"&callback = callback&rt=jsonp",
-                             dataType:'jsonp',//服务器返回json格式数据
-                             jsonpCallback:'callback',
-                             jsonp: 'callback',
-                             crossDomain: true,
-                             data:"{}",                         
-                success:function(res){
-                    for(var b=0;b<res[0].hq.length;b++){
-                        var zhi=res[0].hq[b][4].replace("%","");
-                        console.log("前"+(b+1)+"天指数涨幅:"+zhi)
-                        zzh=zzh+Number(zhi);
-                    }
-                    console.log("个股涨幅合:"+dzh)
-                    console.log("指数涨幅合:"+zzh)
-                    document.getElementById('pianli').value="盘后偏离值:"+(dzh-zzh).toFixed(2);
+     daima=$("#daima").val();
                    $.ajax({
-                    type:"get",//请求服务器载入数据
-                    //async: false,
-                    url:"https://qt.gtimg.cn/q=s_"+zs1+",s_"+zs1.slice(0,2)+mama,
-                                 dataType:'html',//服务器返回json格式数据
-                                 crossDomain: true,
-                                 data:"{}",                         
-                    success:function(zhishu){
-                        cf = zhishu.split("~");
-                          console.log("实时指数涨幅:"+cf[5])
-                          console.log("实时个股涨幅:"+cf[15])
-                          document.getElementById('wei').value="盘中偏离值:"+((dzh+Number(cf[15]))-(zzh+Number(cf[5]))).toFixed(2);
-               $.ajax({
                 type:"get",//请求服务器载入数据
-               // async: false,
-                url:"https://np-anotice-stock.eastmoney.com/api/security/ann?page_size=50&page_index=1&ann_type=A&client_source=web&stock_list="+mama+"&f_node=0&s_node=0&rt=jsonp",
+                //async: false,
+                url:"https://np-anotice-stock.eastmoney.com/api/security/ann?page_size=50&page_index=1&ann_type=A&client_source=web&stock_list="+daima+"&f_node=0&s_node=0&rt=jsonp",
                              dataType:'jsonp',//服务器返回json格式数据
                              jsonpCallback:'cb',
                              jsonp: 'cb',
                              crossDomain: true,
-                             
-                             //data:"{}",                         
-                success:function(xin){
-                    yd=0;
-                    document.getElementById('daima').value=mama+"【"+xin.data.list[0].codes[0].short_name+"】"
-                    for(var c=0;c<xin.data.list.length;c++){
-                         code=xin.data.list[c].art_code;
-                         shijian=xin.data.list[c].notice_date.split(" ");
-                         shijian=shijian[0];
-                         console.log(Date.parse(new Date(shijian)))
-                         neirong=xin.data.list[c].title;
-                         if(neirong.indexOf("波动")!=-1 || neirong.indexOf("停牌")!=-1 || neirong.indexOf("关注函")!=-1){
-                             yd=yd+1;
-                             zzsj=charu(etime,4,"-");
-                             zzsj=charu(zzsj,7,"-");
-                             jjs=0;
-                             for(var qwe=1;qwe<20;qwe++){//找出10天前是哪一个日期
-                                 
-                                  curTime1 = new Date(Date.parse(zzsj)).getTime();
-                                  startDate1 = curTime1 - (qwe * 3600 * 24 * 1000);
-                                  time1 = new Date(startDate1);
-                                  if(time1.getDay() != 0 && time1.getDay() != 6){
-                                      jjs=jjs+1;
-                                  }
-                                  if (jjs==9){
-                                      
-                                      break;
-                                  }
-                             }                             
-                             
-                             
-                             zzsj=startDate1;
-                             console.log(zzsj)
-                             if(new Date(Date.parse(shijian))==zzsj&&neirong.indexOf("波动")!=-1&&neirong.indexOf("回")==-1){
-                                 jsbd=jsbd+1;
-                             }
-                             ggsj=(Date.parse(shijian));
-                             if(neirong.indexOf("波动")!=-1 && ggsj>=zzsj && neirong.indexOf("回")==-1){
-                                 bd=bd+1;
-                             }
-                             nr=xin.data.list[c].columns[0].column_name+"【"+shijian+"】";
-                             obj.add(new Option(nr,yd));
-                         }
-                         
-                         if (yd==10){
-                              
-                               break;
-                           }
-                     
-                    }
-                      var tou = document.getElementById("tou");
-                      var h55 =document.createElement("h4");
-                      if(jsbd!=0){
-                          h55.innerHTML="10日内异动:【"+bd+"次】明天减少【"+jsbd+"次异动】"+"《"+nali+"》";
-                      }
-                      else{
-                          h55.innerHTML="10日内异动:【"+bd+"次】"+"《"+nali+"》";
-                      }
-                      h55.style.color="red";
-                      tou.appendChild(h55);
-                },
-               })                     
-                       
-                    },
-                                error:function(xhr,type,errorThrown){
-                                      console.log(xhr.statusText);
-                                      console.log(xhr.responseText);
-                                      console.log(xhr.status);
-                                      console.log(type);
-                                      console.log(errorThrown);
-                                      }
-                   })                    
-                   
-                },
-                            error:function(xhr,type,errorThrown){
-                                  console.log(xhr.statusText);
-                                  console.log(xhr.responseText);
-                                  console.log(xhr.status);
-                                  console.log(type);
-                                  console.log(errorThrown);
-                                  }
-               })
-                }else{alert("输入错误重新输入")}},
-                            error:function(xhr,type,errorThrown){
-                                  console.log(xhr.statusText);
-                                  console.log(xhr.responseText);
-                                  console.log(xhr.status);
-                                  console.log(type);
-                                  console.log(errorThrown);
+                             //data:"{}",
+                             //ContentType:'application/javascript',
+                success:function(co){
 
-                             }
-                             
-            })   
+                  
+
+document.getElementById('daima').value=daima+"【"+co.data.list[0].codes[0].short_name+"】";
+                   $.ajax({
+                type:"post",//请求服务器载入数据
+                //async: false,
+                url:"https://applhb.longhuvip.com/w1/api/index.php?apiv=w29&PhoneOSNew=2&VerSion=5.4.0.3&c=Stock&a=GetNewOneStockInfo&Type=0&StockID="+daima,
+                             dataType:'html',//服务器返回json格式数据
+                             //jsonpCallback:'cb',
+                             //jsonp: 'cb',
+                             //crossDomain: true,
+                            // data:"{}",
+                             //ContentType:'application/javascript',
+                success:function(co1){
+                    xw=JSON.parse(co1)
+                    cd=xw.List[0].BuyList;
+                    for(var i=0;i<xw.List[0].BuyList.length;i++){
+                    nr=xw.List[0].BuyList[i].Name;
+                    yd=xw.List[0].BuyList[i].ID;
+                    obj.add(new Option(nr,yd));
+                    }
+                   console.log(xw)
+                },
+                   })
+            
+             },
+         })
    
 } 
 }
