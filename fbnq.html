@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="referrer" content="no-referrer"/>
+<meta name="referrer" content="never"/>
+<meta name="referrer" content="same-origin"/>
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+    <!-- ================= Favicon ================== -->
+    <!-- Standard -->
+		<link rel="shortcut icon" href="/favicon.ico">
+    <!-- Styles -->
+           <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
+           <link href="assets/css/style.css" rel="stylesheet">
+           <link href="assets/css/lib/themify-icons.css" rel="stylesheet">
+           <title>连扳股概念</title>
+    <script>
+    </script>
+</head>
+
+<body class="bg-primary">
+
+    <div class="unix-login">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="login-content">
+                        <div class="login-logo">
+                            <span style="color:#000000">连扳股概念</span>
+                        </div>
+                         <div class="card" >
+                             <div class="card-title" id="tou" style="margin-bottom:-5%">
+                                 </div>
+
+                                <div class="card-body">
+                                    <div class="input-sizes">
+                                        <form class="form-horizontal fc-view" >
+                                                  
+
+                                        
+                                   <div class="form-group" >
+                                            <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <input id="gao" type="text" placeholder="高点" class="form-control"  name="example-input-small" lay-key="1" onclick="qingkong()">
+                                                    
+                                                </div>
+               
+                                            </div>                                   
+                                   <div class="form-group" >
+                                            <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <input id="di" type="text" placeholder="低点" class="form-control" onblur="lsgc()" >
+                                                    
+                                                </div>
+               
+                                            </div>                                   
+
+                                    </div>
+                                    </div>
+                                   <div class="form-group" >
+                                            <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <textarea id="jieguo" type="text" placeholder="低点" class="form-control"  style="height:220%;" ></textarea>
+                                                    
+                                                </div>
+               
+                                            </div>                                   
+
+                                    </div>                                    
+                                   <div class="form-group" >
+                                            <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+
+                                                    
+                                                </div>
+               
+                                            </div>                                   
+
+                                    </div>                                        
+                                    
+                                    
+                                </div>
+                         </div>           
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+       <script src="assets/js/lib/jquery.min.js"></script>
+    <script src="assets/laydate/laydate.js"></script>
+    <script src="assets/layer_mobile/layer.js"></script>
+    <script src="js/date.format.js"></script>
+    <script src="js/gbk.js"></script>
+   <script>
+
+   
+   
+   
+   document.onkeydown = keyListener;
+function keyListener(e) {
+// 当按下回车键，执行我们的代码
+    if (e.keyCode == 13) {
+SubInfo();
+    }
+}
+
+
+
+
+	   
+	   
+function qingkong(){
+  $("#gao").empty();
+  $("#di").empty();
+  $("#suoyou").empty();
+
+}
+
+
+function lsgc(){
+
+    var gao=document.getElementById('gao').value;
+    var di=document.getElementById('di').value;
+    console.log(gao)
+    gao=Number(gao);
+    di=Number(di);
+
+    yj=((gao-di)*0.191+di).toFixed(3);
+    es=((gao-di)*0.236+di).toFixed(3);
+    sb=((gao-di)*0.382+di).toFixed(3);
+    w=((gao-di)*0.5+di).toFixed(3);
+    ly=((gao-di)*0.618+di).toFixed(3);
+    ll=((gao-di)*0.66+di).toFixed(3);   
+    qb=((gao-di)*0.786+di).toFixed(3);
+    bw=((gao-di)*0.857+di).toFixed(3);
+    bb=((gao-di)*0.886+di).toFixed(3);
+    yyj=((gao-di)*1.191+di).toFixed(3);
+    yeq=((gao-di)*1.27+di).toFixed(3);
+    console.log(yj)
+    neirong="0.191:    "+yj+"\n"+"0.236:    "+es+"\n"+"0.382:    "+sb+"\n"+"0.5:    "+w+"\n"+"0.618:    "+ly+"\n"+"0.66:    "+ll+"\n"+"0.786:    "+qb+"\n"+"0.857:    "+bw+"\n"+"0.886:    "+bb+"\n"+"1.191:    "+yyj+"\n"+"1.27:    "+yeq+"\n"
+    document.getElementById('jieguo').value=neirong;
+}
+
+
+
+   </script>
+</body>
+
+</html>
