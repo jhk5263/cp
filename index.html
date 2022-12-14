@@ -60,14 +60,17 @@
                                          <div class="form-group" >   
                                            <div class="row">
                                               <div class="col-lg-2"></div>
-                                                <div class="col-lg-2">
+                                                <div class="col-lg-2" style="display:none">
                                                 <input id="nian" type="text" placeholder="年和" class="form-control"  name="example-input-small" lay-key="1" >
                                                 </div>
-                                                <div class="col-lg-3">
+                                                <div class="col-lg-2">
                                                 <input id="yue" type="text" placeholder="月" class="form-control"  name="example-input-small" lay-key="1" >
                                                 </div>
                                                 <div class="col-lg-3">
-                                                <input id="ri" type="text" placeholder="日" class="form-control"  name="example-input-small" lay-key="1" onblur="lsgc()">
+                                                <input id="ri" type="text" placeholder="日" class="form-control"  name="example-input-small" lay-key="1" >
+                                                </div>
+                                                <div class="col-lg-3">
+                                                <input id="hang" type="text" placeholder="行" class="form-control"  name="example-input-small" lay-key="1" >
                                                 </div>
                                             </div> 
                                            
@@ -248,188 +251,7 @@ jieguo1=[]
 hong=[]
 lan=[]
 switch(lx) {
-     case 's':
-        z=Number(nian)+Number(yue)+Number(ri)
-        sgongs=[z-1,z,z,z,z,z,z,z]
-        schazhi=sgongs.length-shang.length
-
-        for(var i=0;i<shang.length;i++){
-
-            if((Number(sgongs[i])+Number(shang[i]))<=33){
-            jieguo.push(Math.abs(Number(sgongs[i])+Number(shang[i])))
-            }
-            else{
-                szz=(Number(sgongs[i])+Number(shang[i])).toString()
-                console.log(szz)
-                zj=0
-                for(var j=0;j<szz.length;j++){
-                    zj=zj+Number(szz[j])
-                }
-                console.log(zj)
-                jieguo.push(Math.abs(zj))
-            }
-        }
-        
-        for(var i=0;i<schazhi;i++){
-
-           jieguo.push(0) 
-        }
-        if((Number(jieguo[1])+Number(jieguo[2]))<=33){
-            jieguo.push(Math.abs(Number(jieguo[1])+Number(jieguo[2])))
-            }
-            else{
-                szz=(Number(jieguo[1])+Number(jieguo[2])).toString()
-                                console.log(szz)
-                zj=0
-                for(var j=0;j<szz.length;j++){
-                    zj=zj+Number(szz[j])
-                }
-                                console.log(zj)
-                jieguo.push(Math.abs(zj))
-            }
-        if((Number(jieguo[2])+Number(jieguo[7]))<=33){
-            jieguo.push(Math.abs(Number(jieguo[2])+Number(jieguo[7])))
-            }
-            else{
-                szz=(Number(jieguo[2])+Number(jieguo[7])).toString()
-                                console.log(szz)
-                zj=0
-                for(var j=0;j<szz.length;j++){
-                    zj=zj+Number(szz[j])
-                }
-                                console.log(zj)
-                jieguo.push(Math.abs(zj))
-            }
-
-        zgongs=[z-1,z,z,z,z,z,z,z]
-        for(var i=0;i<zheng.length;i++){
-            if((Number(zgongs[i])+Number(zheng[i]))<=33){
-            jieguo.push(Math.abs(Number(zgongs[i])+Number(zheng[i])))
-            }
-            else{
-                szz=(Number(zgongs[i])+Number(zheng[i])).toString()
-                console.log(szz)
-                zj=0
-                for(var j=0;j<szz.length;j++){
-                    zj=zj+Number(szz[j])
-                }
-                console.log(zj)
-                jieguo.push(Math.abs(zj))
-            }
-        }
-
-        zchazhi=zgongs.length-zheng.length
-        for(var i=0;i<zchazhi;i++){
-           jieguo.push(0) 
-        }
-        console.log(jieguo)
-        for(var i = 0; i< jieguo.length;i++){
-            if(jieguo[i] !=0){
-                hong.push(jieguo[i])
-            }
-        }    
-        console.log(hong)
-        //汇总完毕，下面排序
-        mz="红球："+"\n"
-         var obj4 = {}; 
-         for(var i= 0, l = hong.length; i< l; i++){ 
-                var item = hong[i]; 
-        
-                obj4[item]= (obj4[item] +1 ) || 1; 
-        } 
-        bk=Array.from(new Set(hong));
-        var bkk=[];
-        for(var i=0;i<bk.length;i++){
-          var ob=new Object();
-          ob.name=bk[i];
-          ob.value=parseFloat(obj4[ob.name]);
-          bkk.push(ob);
-        }
-
-        bk=listSortBy(bkk,'name','asc'); 
-
-          for(var i=0;i<bk.length;i++){
-              mz=mz+bk[i]["name"]+"    【"+bk[i]["value"]+"个】"+"\n"
-
-          }
-
-        //以上红球
-        mz=mz+"\n"+"蓝球："+"\n"
-        jieguo=[]
-        sgongs=[z,z,z,z,z,z]
-        lshang=$("#lshang").val();
-        lshang=lshang.split(" ")
-        lzheng=$("#lzheng").val();
-        lzheng=lzheng.split(" ")
-        schazhi=sgongs.length-lshang.length
-        for(var i=0;i<lshang.length;i++){
-            if((Number(sgongs[i])+Number(lshang[i]))<=16){
-            jieguo.push(Math.abs(Number(sgongs[i])+Number(lshang[i])))
-            }
-            else{
-                szz=(Number(sgongs[i])+Number(lshang[i])).toString()
-                zj=0
-                for(var j=0;j<szz.length;j++){
-                    zj=zj+Number(szz[j])
-                }
-                jieguo.push(Math.abs(zj))
-            }
-        }
-        
-        for(var i=0;i<schazhi;i++){
-           jieguo.push(0) 
-        }
-
-
-        zgongs=[z,z,z,z,z,z]
-        for(var i=0;i<lzheng.length;i++){
-            if((Number(sgongs[i])+Number(lzheng[i]))<=16){
-            jieguo.push(Math.abs(Number(sgongs[i])+Number(lzheng[i])))
-            }
-            else{
-                szz=(Number(sgongs[i])+Number(lzheng[i])).toString()
-                zj=0
-                for(var j=0;j<szz.length;j++){
-                    zj=zj+Number(szz[j])
-                }
-                jieguo.push(Math.abs(zj))
-            }
-        }
-        zchazhi=zgongs.length-lzheng.length
-        for(var i=0;i<zchazhi;i++){
-           jieguo.push(0) 
-        }
-
-        for(var i = 0; i< jieguo.length;i++){
-            if(jieguo[i] !=0){
-                lan.push(jieguo[i])
-            }
-        }    
-
-        //汇总完毕，下面排序
-         var obj4 = {}; 
-         for(var i= 0, l = lan.length; i< l; i++){ 
-                var item = lan[i]; 
-        
-                obj4[item]= (obj4[item] +1 ) || 1; 
-        } 
-        bk=Array.from(new Set(lan));
-        var bkk=[];
-        for(var i=0;i<bk.length;i++){
-          var ob=new Object();
-          ob.name=bk[i];
-          ob.value=parseFloat(obj4[ob.name]);
-          bkk.push(ob);
-        }
-
-        bk=listSortBy(bkk,'name','asc'); 
-
-          for(var i=0;i<bk.length;i++){
-              mz=mz+bk[i]["name"]+"    【"+bk[i]["value"]+"个】"+"\n"
-
-          }
-
-          document.getElementById('jieguo').value=mz        
+     case 's':      
         break;
      case 'd':
         代码块
@@ -441,12 +263,24 @@ switch(lx) {
         py=[]
         hs=0
 
-        for(var i=0;i<ri.length;i++){
-            hs=hs+Number(ri[i])
+        if(Number(hang)%10!=0){
+            for(var i=0;i<hang.length;i++){
+                hs=hs+Number(hang[i])
+            }
         }
+        else{
+            hs=0
+        }
+        if(hs!=0){
         hszh1=[hs-1-1]
         hszh2=[hs-1]
         hszh3=[hs+1-1]
+        }
+        else{
+           hszh1=[]
+            hszh2=[]
+            hszh3=[]     
+        }
         for(var i=1;i<7;i++){
             if(Number(i*10+hs)-2<=68){hszh1.push(Number(i*10+hs-2))}
             if(i*0+hs-1<=69){hszh2.push(Number(i*10+hs-1))}
@@ -738,13 +572,24 @@ switch(lx) {
         zc=[]
         py=[]
         hs=0
-
-        for(var i=0;i<ri.length;i++){
-            hs=hs+Number(ri[i])
+        if(Number(hang)%10!=0){
+            for(var i=0;i<hang.length;i++){
+                hs=hs+Number(hang[i])
+            }
         }
+        else{
+            hs=0
+        }
+        if(hs!=0){
         hszh1=[hs-1-1]
         hszh2=[hs-1]
         hszh3=[hs+1-1]
+        }
+        else{
+           hszh1=[]
+            hszh2=[]
+            hszh3=[]     
+        }
         for(var i=1;i<11;i++){
             if(Number(i*10+hs-2)<=118){hszh1.push(Number(i*10+hs-2))}
             if(i*0+hs-1<=69){hszh2.push(Number(i*10+hs-1))}
