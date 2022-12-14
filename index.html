@@ -50,8 +50,8 @@
                                                 <div class="col-lg-8">
                                                     <select class="form-control" id="lx"  style="margin-bottom:-3%" onchange="lsgc()">
 
-																<option value="sy">31(当天，行数和行数+1)</option>
-																<option value="kl8">80选10(用当天)</option>
+																<option value="sy">31(日期，行数都-1)</option>
+																<option value="kl8">80选10(日期，行数都-1)</option>
 													</select>
                                                     
                                                 </div>
@@ -67,10 +67,10 @@
                                                 <input id="yue" type="text" placeholder="月" class="form-control"  name="example-input-small" lay-key="1" >
                                                 </div>
                                                 <div class="col-lg-3">
-                                                <input id="ri" type="text" placeholder="日" class="form-control"  name="example-input-small" lay-key="1" >
+                                                <input id="ri" type="text" placeholder="日" class="form-control"  name="example-input-small" lay-key="1" onblur="lsgc()">
                                                 </div>
                                                 <div class="col-lg-3">
-                                                <input id="hang" type="text" placeholder="行" class="form-control"  name="example-input-small" lay-key="1" >
+                                                <input id="hang" type="text" placeholder="行" class="form-control"  name="example-input-small" lay-key="1" onblur="lsgc()">
                                                 </div>
                                             </div> 
                                            
