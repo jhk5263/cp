@@ -21,12 +21,12 @@
            <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
            <link href="assets/css/style.css" rel="stylesheet">
            <link href="assets/css/lib/themify-icons.css" rel="stylesheet">
-           <title>龙虎榜统计</title>
+           <title>彩票筛选</title>
     <script>
     </script>
 </head>
 
-<body class="bg-primary">
+<body class="bg-primary" onload="zairu()">
 
     <div class="unix-login">
         <div class="container-fluid">
@@ -34,7 +34,7 @@
                 <div class="col-lg-6">
                     <div class="login-content">
                         <div class="login-logo">
-                            <span style="color:#000000">龙虎榜统计</span>
+                            <span style="color:#000000">彩票筛选</span>
                         </div>
                          <div class="card">
                              <div class="card-title" id="tou" style="margin-bottom:-5%">
@@ -44,56 +44,93 @@
                                     <div class="input-sizes">
                                         <form class="form-horizontal fc-view" >
                                                   
-                                   <div class="form-group" style="top">
-                                            <div class="row">
+                                   <div class="form-group" >
+                                           <div class="row">
                                               <div class="col-lg-2"></div>
                                                 <div class="col-lg-8">
-                                                    <input id="daima" type="text" placeholder="点这输股票名或代码，然后点席位选择" class="form-control"  name="example-input-small" lay-key="1" onblur="lsgc()" onclick="qingkong()">
-                                                    
-                                                </div>
-               
-                                            </div>
+                                                    <select class="form-control" id="lx"  style="margin-bottom:-3%">
 
-                                             
-                                           <div class="row">
-                                              <div class="col-lg-2"></div>
-                                                <div class="col-lg-8">
-                                                    <select class="form-control" id="xiwei"  >
-																<option value="全部店铺">席位选择</option>
+																<option value="sy">31(当天，行数和行数+1)</option>
+																<option value="kl8">80选10(用当天)</option>
 													</select>
                                                     
                                                 </div>
-                                            </div>  
+                                            </div> 
+                                            </div>
+                                         <div class="form-group" >   
                                            <div class="row">
                                               <div class="col-lg-2"></div>
-                                                <div class="col-lg-8">
-                                                    <select class="form-control" id="mingxi"  style="margin-bottom:-3%">
-																<option value="">买入/卖出明细</option>
-													</select>
-                                                    
+                                                <div class="col-lg-2">
+                                                <input id="nian" type="text" placeholder="年和" class="form-control"  name="example-input-small" lay-key="1" >
                                                 </div>
-                                            </div>                                              
+                                                <div class="col-lg-3">
+                                                <input id="yue" type="text" placeholder="月" class="form-control"  name="example-input-small" lay-key="1" >
+                                                </div>
+                                                <div class="col-lg-3">
+                                                <input id="ri" type="text" placeholder="日" class="form-control"  name="example-input-small" lay-key="1" >
+                                                </div>
+                                            </div> 
+                                           
+                                           
                                    </div>
+                                      
+                                   <div class="form-group" >
                                             <div class="row">
                                               <div class="col-lg-2"></div>
                                                 <div class="col-lg-8">
-                                                    <input id="qian" type="text" placeholder="点这统计上榜金额，点后可看买入卖出明细" class="form-control"  name="example-input-small" lay-key="1" onblur="jiner()" onclick="qingkong1()">
+                                                    <input id="shang" type="text" placeholder="红球上一个" class="form-control"  name="example-input-small" lay-key="1" >
+                                                    
+                                                </div>
+               
+                                            </div>    
+                                                                                        <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <input id="zheng" type="text" placeholder="红正常" class="form-control"  name="example-input-small" lay-key="1" >
                                                     
                                                 </div>
                
                                             </div>
-                                   
-
+                                    </div>
+                                   <div class="form-group" >
+                                            <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <input id="lshang" type="text" placeholder="蓝球上一个(快乐八可用做+1)" class="form-control"  name="example-input-small" lay-key="1" >
                                                     
-
-                                            <div class="row"align="right">
-                                              
+                                                </div>
+               
+                                            </div>    
+                                            <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <input id="lzheng" type="text" placeholder="蓝正常" class="form-control"  name="example-input-small" lay-key="1" >
+                                                    
+                                                </div>
+               
+                                            </div>
+                                    </div>      
+                                   <div class="form-group" >
+                                            <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <textarea id="jieguo"  type="text" placeholder="结果" class="form-control"  name="example-input-small" lay-key="1" style="height:200px"></textarea>
+                                                </div>
+               
+                                            </div>   
                                     </div>
-                                        
-                                        </form>
-                                    </div>
+                                   <div class="form-group" >
+                                       <div class="row">
+                                       <div class="col-lg-3"></div>
+                                       <div class="col-lg-6">
+                                <input id="zheng" type="button" value="计算" class="btn btn-success btn-flat m-b-15" onclick="lsgc()" style="width:100%">
                                 </div>
-                         </div>           
+                                </div>
+
+
+
+                                    </div>                                    
+            
                     </div>
                 </div>
             </div>
@@ -105,6 +142,20 @@
     <script src="js/date.format.js"></script>
     <script src="js/gbk.js"></script>
    <script>
+$(function(){
+    laydate.render({
+  elem: '#Time'
+  ,type: 'datetime'
+
+  ,zIndex: 99999999
+  ,format: 'yyyy-MM-dd'
+});
+
+
+});   
+   
+   
+   
    document.onkeydown = keyListener;
 function keyListener(e) {
 // 当按下回车键，执行我们的代码
@@ -112,215 +163,757 @@ function keyListener(e) {
 SubInfo();
     }
 }
+
+function func(a,b){
+	return a-b;
+}
+  function listSortBy(arr, field, order){
+    var refer = [], result=[], order = order=='asc'?'asc':'desc', index;
+    for(i=0; i<arr.length; i++){
+        refer[i] = arr[i][field]+':'+i;
+    }
+        refer.sort(function (a,b) {
+            a=parseFloat(a);
+            b=parseFloat(b);
+            if (a < b ) {    
+                return -1;
+            }
+            if (a > b ) {
+                return 1;
+            }
+            // a must be equal to b
+            return 0;
+        });
+
+
+    if(order=='desc') refer.reverse();
+    for(i=0;i<refer.length;i++){
+        index = refer[i].split(':')[1];
+        result[i] = arr[index];
+    }
+    return result;
+}
+function checkTime(i){
+	if (i<10) 
+  {i="0" + i}
+  
+  return i
+ 
+};
 function charu(soure, start, newStr){   
    return soure.slice(0, start) + newStr + soure.slice(start);
 }
-$(function(){
-    laydate.render({
-  elem: '#EndTime'
-  ,type: 'datetime'
-  ,value: new Date() 
-  ,zIndex: 99999999
-  ,format: 'yyyyMMdd'
-});
 
- laydate.render({
-  elem: '#StartTime'
-  ,type: 'datetime'
-  ,value: new Date() 
-  ,zIndex: 99999999
-  ,format: 'yyyyMMdd'
-});
+	   
+	   
 
-});
-
-
-function qingkong(){
-
-    document.getElementById('daima').value="";
-    
-}
-function qingkong1(){
-
-    document.getElementById('qian').value="";
-    
-}
-function encodeToGb2312(str){
-    var strOut="";
-    for(var i = 0; i < str.length; i++){
-        var c = str.charAt(i); 
-        var code = str.charCodeAt(i);
-        if(c==" ") strOut +="+";
-        else if(code >= 19968 && code <= 40869){
-            index = code - 19968;
-            strOut += "%" + z.substr(index*4,2) + "%" + z.substr(index*4+2,2);
-        }
-        else{
-            strOut += "%" + str.charCodeAt(i).toString(16);
-        }
-    }
-    return strOut;
+function formatt(now){
+          var   year=checkTime(now.getFullYear());   
+          var   month=checkTime(now.getMonth()+1);   
+          var   date=checkTime(now.getDate());   
+          var   hour=checkTime(now.getHours());   
+          var   minute=checkTime(now.getMinutes());   
+          var   second=checkTime(now.getSeconds());   
+          return  hour+":"+minute+":"+second;   
 }
 
-function jiner(){
-    var obj=document.getElementById('xiwei');
-    index=obj.selectedIndex;
-    bid=obj.options[index].value;
-      $("#mingxi").empty();
-      var obj1=document.getElementById('mingxi');
-      obj1.add(new Option("买入/卖出明细",0)); 
-    mingzi=$("#daima").val();
-var regex2 = /\【(.+?)\】/gi;   
-    mingzi=mingzi.replaceAll(regex2,"$1");
-    regex2=/[0-9]+/gi;
-    mingzi=mingzi.replace(regex2,"");
-var zongjia=0;
-var yd=0;
-console.log(mingzi)
-                   $.ajax({
-                type:"get",//请求服务器载入数据
-                //async: false,
-                url:"https://applhb.longhuvip.com/w1/api/index.php?apiv=w29&PhoneOSNew=2&c=Business&BusinessID="+bid+"&st=150&a=PosDoNewStockLog",
-                dataType:'html',
-                success:function(co){
-                    xw=JSON.parse(co)
+function zairu(){
+year=new Date().getFullYear()
+month=checkTime(new Date().getMonth()+1);
+date=checkTime(new Date().getDate());
+z=0
+console.log(month)
+console.log(date)
+for(var i=0;i<year.toString().length;i++){
 
-                    for(var i=0;i<xw.list.length-1;i++){
-                        bs=xw.list.length-1-i;
-                        if(xw.list[bs].Name==mingzi){
-                            yd=yd+1;
-                            if(xw.list[bs].Type==2){
-                              zongjia=zongjia-Number(xw.list[bs].Sell)
-                                nr=xw.list[bs].Time+"卖:"+(Number(xw.list[bs].Sell)/100000000).toFixed(3)+"亿";
-                                obj1.add(new Option(nr,yd));                              
-                            }
-                            else
-                            {
-                              zongjia=zongjia+Number(xw.list[bs].Buy)
-                                nr=xw.list[bs].Time+"买:"+(Number(xw.list[bs].Buy)/100000000).toFixed(3)+"亿";
-                                obj1.add(new Option(nr,yd));
-                            }
-                        }
-                    }
-document.getElementById('qian').value="上榜金额统计："+zongjia/100000000+"亿";                    
-                }
-                   })
+
+    z=z+Number(year.toString()[i])
 }
+document.getElementById('nian').value=z
+document.getElementById('yue').value=month
+document.getElementById('ri').value=date
+}
+
+ 
 
 
 
 function lsgc(){
-var daima="";
-var mama="";
-var dyyd="";
-var youguan="";
-  $("#xiwei").empty();
-  $("#mingxi").empty();
-var obj=document.getElementById('xiwei');
-var obj1=document.getElementById('mingxi');
-obj.add(new Option("席位选择",0));
-obj1.add(new Option("买入/卖出明细",0));
-if(isNaN($("#daima").val())==true){
+var obj=document.getElementById('lx');
+index=obj.selectedIndex;
+lx=obj.options[index].value;
+nian=$("#nian").val();
+yue=$("#yue").val();
+ri=$("#ri").val();
+shang=$("#shang").val();
+shang=shang.split(" ")
+zheng=$("#zheng").val();
+zheng=zheng.split(" ")
+jieguo=[]
+jieguo1=[]
+hong=[]
+lan=[]
+switch(lx) {
+     case 's':
+        z=Number(nian)+Number(yue)+Number(ri)
+        sgongs=[z-1,z,z,z,z,z,z,z]
+        schazhi=sgongs.length-shang.length
 
-    bianma=$URL.encode($("#daima").val());
-    console.log(bianma)
-                   $.ajax({
-                type:"get",//请求服务器载入数据
-                //async: false,
-                url:"https://q.stock.sohu.com/app1/stockSearch?method=search&type=all&keyword="+bianma+"&rt=jsonp",
-                             dataType:'jsonp',//服务器返回json格式数据
-                             jsonpCallback:'callback',
-                             jsonp: 'callback',
-                             crossDomain: true,
-                             //data:"{}",
-                             ContentType:'application/javascript',
-                success:function(co){
+        for(var i=0;i<shang.length;i++){
 
-                    if(co.result.length==0){alert("输入有误，重新输入")}
-                    daima=co.result[0][1];
-                    mama=co.result[0][2];
-                    mama=mama.replace(/<[^>]+>/g,"");
-document.getElementById('daima').value=daima+"【"+mama+"】";
-                   $.ajax({
-                type:"post",//请求服务器载入数据
-                //async: false,
-                url:"https://applhb.longhuvip.com/w1/api/index.php?apiv=w29&PhoneOSNew=2&VerSion=5.4.0.3&c=Stock&a=GetNewOneStockInfo&Type=0&StockID="+daima,
-                             dataType:'html',//服务器返回json格式数据
-                             //jsonpCallback:'cb',
-                             //jsonp: 'cb',
-                             //crossDomain: true,
-                            // data:"{}",
-                             //ContentType:'application/javascript',
-                success:function(co1){
-                    xw=JSON.parse(co1)
-                    for(var i=0;i<xw.List[0].BuyList.length;i++){
-                    nr=xw.List[0].BuyList[i].Name;
-                    yd=xw.List[0].BuyList[i].ID;
-                    obj.add(new Option(nr,yd));
-                    nr=xw.List[0].SellList[i].Name;
-                    yd=xw.List[0].SellList[i].ID;
-                    obj.add(new Option(nr,yd));                    
-                    }
-                   console.log(xw)
-                },
-                   })
+            if((Number(sgongs[i])+Number(shang[i]))<=33){
+            jieguo.push(Math.abs(Number(sgongs[i])+Number(shang[i])))
+            }
+            else{
+                szz=(Number(sgongs[i])+Number(shang[i])).toString()
+                console.log(szz)
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+                console.log(zj)
+                jieguo.push(Math.abs(zj))
+            }
+        }
+        
+        for(var i=0;i<schazhi;i++){
+
+           jieguo.push(0) 
+        }
+        if((Number(jieguo[1])+Number(jieguo[2]))<=33){
+            jieguo.push(Math.abs(Number(jieguo[1])+Number(jieguo[2])))
+            }
+            else{
+                szz=(Number(jieguo[1])+Number(jieguo[2])).toString()
+                                console.log(szz)
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+                                console.log(zj)
+                jieguo.push(Math.abs(zj))
+            }
+        if((Number(jieguo[2])+Number(jieguo[7]))<=33){
+            jieguo.push(Math.abs(Number(jieguo[2])+Number(jieguo[7])))
+            }
+            else{
+                szz=(Number(jieguo[2])+Number(jieguo[7])).toString()
+                                console.log(szz)
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+                                console.log(zj)
+                jieguo.push(Math.abs(zj))
+            }
+
+        zgongs=[z-1,z,z,z,z,z,z,z]
+        for(var i=0;i<zheng.length;i++){
+            if((Number(zgongs[i])+Number(zheng[i]))<=33){
+            jieguo.push(Math.abs(Number(zgongs[i])+Number(zheng[i])))
+            }
+            else{
+                szz=(Number(zgongs[i])+Number(zheng[i])).toString()
+                console.log(szz)
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+                console.log(zj)
+                jieguo.push(Math.abs(zj))
+            }
+        }
+
+        zchazhi=zgongs.length-zheng.length
+        for(var i=0;i<zchazhi;i++){
+           jieguo.push(0) 
+        }
+        console.log(jieguo)
+        for(var i = 0; i< jieguo.length;i++){
+            if(jieguo[i] !=0){
+                hong.push(jieguo[i])
+            }
+        }    
+        console.log(hong)
+        //汇总完毕，下面排序
+        mz="红球："+"\n"
+         var obj4 = {}; 
+         for(var i= 0, l = hong.length; i< l; i++){ 
+                var item = hong[i]; 
+        
+                obj4[item]= (obj4[item] +1 ) || 1; 
+        } 
+        bk=Array.from(new Set(hong));
+        var bkk=[];
+        for(var i=0;i<bk.length;i++){
+          var ob=new Object();
+          ob.name=bk[i];
+          ob.value=parseFloat(obj4[ob.name]);
+          bkk.push(ob);
+        }
+
+        bk=listSortBy(bkk,'name','asc'); 
+
+          for(var i=0;i<bk.length;i++){
+              mz=mz+bk[i]["name"]+"    【"+bk[i]["value"]+"个】"+"\n"
+
+          }
+
+        //以上红球
+        mz=mz+"\n"+"蓝球："+"\n"
+        jieguo=[]
+        sgongs=[z,z,z,z,z,z]
+        lshang=$("#lshang").val();
+        lshang=lshang.split(" ")
+        lzheng=$("#lzheng").val();
+        lzheng=lzheng.split(" ")
+        schazhi=sgongs.length-lshang.length
+        for(var i=0;i<lshang.length;i++){
+            if((Number(sgongs[i])+Number(lshang[i]))<=16){
+            jieguo.push(Math.abs(Number(sgongs[i])+Number(lshang[i])))
+            }
+            else{
+                szz=(Number(sgongs[i])+Number(lshang[i])).toString()
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+                jieguo.push(Math.abs(zj))
+            }
+        }
+        
+        for(var i=0;i<schazhi;i++){
+           jieguo.push(0) 
+        }
+
+
+        zgongs=[z,z,z,z,z,z]
+        for(var i=0;i<lzheng.length;i++){
+            if((Number(sgongs[i])+Number(lzheng[i]))<=16){
+            jieguo.push(Math.abs(Number(sgongs[i])+Number(lzheng[i])))
+            }
+            else{
+                szz=(Number(sgongs[i])+Number(lzheng[i])).toString()
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+                jieguo.push(Math.abs(zj))
+            }
+        }
+        zchazhi=zgongs.length-lzheng.length
+        for(var i=0;i<zchazhi;i++){
+           jieguo.push(0) 
+        }
+
+        for(var i = 0; i< jieguo.length;i++){
+            if(jieguo[i] !=0){
+                lan.push(jieguo[i])
+            }
+        }    
+
+        //汇总完毕，下面排序
+         var obj4 = {}; 
+         for(var i= 0, l = lan.length; i< l; i++){ 
+                var item = lan[i]; 
+        
+                obj4[item]= (obj4[item] +1 ) || 1; 
+        } 
+        bk=Array.from(new Set(lan));
+        var bkk=[];
+        for(var i=0;i<bk.length;i++){
+          var ob=new Object();
+          ob.name=bk[i];
+          ob.value=parseFloat(obj4[ob.name]);
+          bkk.push(ob);
+        }
+
+        bk=listSortBy(bkk,'name','asc'); 
+
+          for(var i=0;i<bk.length;i++){
+              mz=mz+bk[i]["name"]+"    【"+bk[i]["value"]+"个】"+"\n"
+
+          }
+
+          document.getElementById('jieguo').value=mz        
+        break;
+     case 'd':
+        代码块
+        break;
+     case 'sy':
+        z=Number(nian)+Number(yue)+Number(ri)
+        my=[]
+        zc=[]
+        py=[]
+        hs=0
+
+        for(var i=0;i<ri.length;i++){
+            hs=hs+Number(ri[i])
+        }
+        hszh1=[hs-1-1]
+        hszh2=[hs-1]
+        hszh3=[hs+1-1]
+        for(var i=1;i<7;i++){
+            if(Number(i*10+hs)-2<=68){hszh1.push(Number(i*10+hs-2))}
+            if(i*0+hs-1<=69){hszh2.push(Number(i*10+hs-1))}
+            if(Number(i*10+hs)<=68){hszh3.push(Number(i*10+hs))}
+
+        }
+
+        $.ajax({
+        type:"post",//请求服务器载入数据
+        async: false,
+        url:"https://database.deta.sh/v1/c0q3z43t/sy/query",
+        headers: {
+            "X-API-Key": "c0q3z43t_d5tewaSJztAzJTyFuurzUhAnBBAxns7t",
+            "Content-Type": "application/json"
+        },
+        data:'{"query":[{"xulie?lt":'+1000+'}]}',
+        dataType:'json',
+        success:function(co){
+        xw=co.items
+
+        var bkk=[];
+        for(var i=0;i<xw.length;i++){
+          var ob=new Object();
+          ob.name=xw[i]['xulie'];
+          ob.value=xw[i]['zhi'];
+          bkk.push(ob);
+        }
+        shang=[]
+        zheng=[]
+        jia=[]
+        yz=[]
+        ez=[]
+        sz=[]
+        xw=listSortBy(bkk,'name','asc'); 
+        cd=Math.max(hszh1.length,hszh2.length,hszh3.length)
+        for(var i=0;i<cd;i++){
+
+            shang.push(xw[hszh1[i]]['value'])
+            zheng.push(xw[hszh2[i]]['value'])
+            jia.push(xw[hszh3[i]]['value'])
+
+        }
+        console.log(shang)
+        sgongs=[z-1,z,z+1,z,z,z,z]
+        schazhi=sgongs.length-shang.length
+
+        for(var i=0;i<shang.length;i++){
+
+            if((Number(sgongs[i])+Number(shang[i]))<=31){
+            jieguo.push(Math.abs(Number(sgongs[i])+Number(shang[i])))
+            yz.push(Math.abs(Number(sgongs[i])+Number(shang[i])))
+            }
+            else{
+                szz=(Number(sgongs[i])+Number(shang[i])).toString()
+                console.log(szz)
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+
+                jieguo.push(Math.abs(zj))
+                yz.push(Math.abs(zj))
+            }
+        }
+        
+        for(var i=0;i<schazhi;i++){
+
+           jieguo.push(0) 
+        }
+
+        if((Number(jieguo[1])+Number(jieguo[6]))<=31){
+            jieguo.push(Math.abs(Number(jieguo[1])+Number(jieguo[6])))
+            yz.push(Math.abs(Number(jieguo[1])+Number(jieguo[6])))
+            }
+            else{
+                szz=(Number(jieguo[1])+Number(jieguo[6])).toString()
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+                                console.log(zj)
+                jieguo.push(Math.abs(zj))
+                yz.push(Math.abs(zj))
+            }
+        if((Number(jieguo[0])-Number(jieguo[3]))<=31){
+            jieguo.push(Math.abs(Number(jieguo[0])-Number(jieguo[3])))
+            yz.push(Math.abs(Number(jieguo[0])-Number(jieguo[3])))
+            }
+            else{
+                szz=(Number(jieguo[0])-Number(jieguo[3])).toString()
+
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+
+                jieguo.push(Math.abs(zj))
+                yz.push(Math.abs(zj))
+            }
             
-             },
-         })
+        if((Number(jieguo[0])-Number(jieguo[5]))<=31){
+            jieguo.push(Math.abs(Number(jieguo[0])-Number(jieguo[5])))
+            yz.push(Math.abs(Number(jieguo[0])-Number(jieguo[5])))
+            }
+            else{
+                szz=(Number(jieguo[0])-Number(jieguo[5])).toString()
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+                jieguo.push(Math.abs(zj))
+                yz.push(Math.abs(zj))
+            }
+        console.log(yz)
+        zgongs=[z-1,z,z+1,z,z,z,z]
+        for(var i=0;i<zheng.length;i++){
+            if((Number(zgongs[i])+Number(zheng[i]))<=31){
+            jieguo.push(Math.abs(Number(zgongs[i])+Number(zheng[i])))
+            ez.push(Math.abs(Number(zgongs[i])+Number(zheng[i])))
+            }
+            else{
+                szz=(Number(zgongs[i])+Number(zheng[i])).toString()
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+                jieguo.push(Math.abs(zj))
+                ez.push(Math.abs(zj))
+            }
+        }
 
-}    
-else{ 
-     daima=$("#daima").val();
-                   $.ajax({
-                type:"get",//请求服务器载入数据
-                //async: false,
-                url:"https://np-anotice-stock.eastmoney.com/api/security/ann?page_size=50&page_index=1&ann_type=A&client_source=web&stock_list="+daima+"&f_node=0&s_node=0&rt=jsonp",
-                             dataType:'jsonp',//服务器返回json格式数据
-                             jsonpCallback:'cb',
-                             jsonp: 'cb',
-                             crossDomain: true,
-                             //data:"{}",
-                             //ContentType:'application/javascript',
-                success:function(co){
+        zchazhi=zgongs.length-zheng.length
+        for(var i=0;i<zchazhi;i++){
+           jieguo.push(0) 
+        }
+        if((Number(jieguo[11])+Number(jieguo[16]))<=31){
+            jieguo.push(Math.abs(Number(jieguo[11])+Number(jieguo[16])))
+            ez.push(Math.abs(Number(jieguo[11])+Number(jieguo[16])))
+            }
+            else{
+                szz=(Number(jieguo[11])+Number(jieguo[16])).toString()
 
-                  
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
 
-document.getElementById('daima').value=daima+"【"+co.data.list[0].codes[0].short_name+"】";
-                   $.ajax({
-                type:"post",//请求服务器载入数据
-                //async: false,
-                url:"https://applhb.longhuvip.com/w1/api/index.php?apiv=w29&PhoneOSNew=2&VerSion=5.4.0.3&c=Stock&a=GetNewOneStockInfo&Type=0&StockID="+daima,
-                             dataType:'html',//服务器返回json格式数据
-                             //jsonpCallback:'cb',
-                             //jsonp: 'cb',
-                             //crossDomain: true,
-                            // data:"{}",
-                             //ContentType:'application/javascript',
-                success:function(co1){
-                    xw=JSON.parse(co1)
-                    cd=xw.List[0].BuyList;
-                    for(var i=0;i<xw.List[0].BuyList.length;i++){
-                    nr=xw.List[0].BuyList[i].Name;
-                    yd=xw.List[0].BuyList[i].ID;
-                    obj.add(new Option(nr,yd));
-                    }
-                   console.log(xw)
-                },
-                   })
+                jieguo.push(Math.abs(zj))
+                ez.push(Math.abs(zj))
+            }
+        if((Number(jieguo[10])-Number(jieguo[13]))<=31){
+            jieguo.push(Math.abs(Number(jieguo[10])-Number(jieguo[13])))
+            ez.push(Math.abs(Number(jieguo[10])-Number(jieguo[13])))
+            }
+            else{
+                szz=(Number(jieguo[10])-Number(jieguo[13])).toString()
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+                jieguo.push(Math.abs(zj))
+                ez.push(Math.abs(zj))
+            }
             
-             },
-         })
-   
+        if((Number(jieguo[10])-Number(jieguo[15]))<=31){
+            jieguo.push(Math.abs(Number(jieguo[10])-Number(jieguo[15])))
+            ez.push(Math.abs(Number(jieguo[10])-Number(jieguo[15])))
+            }
+            else{
+                szz=(Number(jieguo[10])-Number(jieguo[15])).toString()
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+
+                jieguo.push(Math.abs(zj))
+                ez.push(Math.abs(zj))
+            }
+        jgongs=[z-1,z,z+1,z,z,z,z]
+        for(var i=0;i<jia.length;i++){
+            if((Number(jgongs[i])+Number(jia[i]))<=31){
+            jieguo.push(Math.abs(Number(jgongs[i])+Number(jia[i])))
+            sz.push(Math.abs(Number(jgongs[i])+Number(jia[i])))
+            }
+            else{
+                szz=(Number(jgongs[i])+Number(jia[i])).toString()
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+                jieguo.push(Math.abs(zj))
+                sz.push(Math.abs(zj))
+            }
+        }
+
+        jchazhi=jgongs.length-jia.length
+        for(var i=0;i<jchazhi;i++){
+           jieguo.push(0) 
+        }
+        if((Number(jieguo[21])+Number(jieguo[26]))<=31){
+            jieguo.push(Math.abs(Number(jieguo[21])+Number(jieguo[26])))
+            sz.push(Math.abs(Number(jieguo[21])+Number(jieguo[26])))
+            }
+            else{
+                szz=(Number(jieguo[21])+Number(jieguo[26])).toString()
+
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+
+                jieguo.push(Math.abs(zj))
+                sz.push(Math.abs(zj))
+            }
+        if((Number(jieguo[20])-Number(jieguo[23]))<=31){
+            jieguo.push(Math.abs(Number(jieguo[20])-Number(jieguo[23])))
+            sz.push(Math.abs(Number(jieguo[20])-Number(jieguo[23])))
+            }
+            else{
+                szz=(Number(jieguo[20])-Number(jieguo[23])).toString()
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+                jieguo.push(Math.abs(zj))
+                sz.push(Math.abs(zj))
+            }
+            
+        if((Number(jieguo[20])-Number(jieguo[25]))<=31){
+            jieguo.push(Math.abs(Number(jieguo[20])-Number(jieguo[25])))
+            sz.push(Math.abs(Number(jieguo[20])-Number(jieguo[25])))
+            }
+            else{
+                szz=(Number(jieguo[20])-Number(jieguo[25])).toString()
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+
+                jieguo.push(Math.abs(zj))
+                sz.push(Math.abs(zj))
+            }
+
+        for(var i = 0; i< jieguo.length;i++){
+            if(jieguo[i] !=0){
+                hong.push(jieguo[i])
+            }
+        }    
+
+        //汇总完毕，下面排序
+        mz=""
+         var obj4 = {}; 
+         for(var i= 0, l = hong.length; i< l; i++){ 
+                var item = hong[i]; 
+        
+                obj4[item]= (obj4[item] +1 ) || 1; 
+        } 
+        bk=Array.from(new Set(hong));
+        var bkk=[];
+        for(var i=0;i<bk.length;i++){
+          var ob=new Object();
+          ob.name=bk[i];
+          ob.value=parseFloat(obj4[ob.name]);
+          bkk.push(ob);
+        }
+
+        bk=listSortBy(bkk,'name','asc'); 
+
+          for(var i=0;i<bk.length;i++){
+              mz=mz+bk[i]["name"]+"    【"+bk[i]["value"]+"个】"+"\n"
+
+          }
+
+        //以上红球
+            
+          yz=yz.sort(func)
+          ez=ez.sort(func)
+          sz=sz.sort(func)
+          document.getElementById('jieguo').value=mz
+          document.getElementById('shang').value=yz
+          document.getElementById('zheng').value=ez
+          document.getElementById('lshang').value=sz
+        }
+        })
+        break;
+        case 'kl8':
+        z=Number(nian)+Number(yue)+Number(ri)
+        my=[]
+        zc=[]
+        py=[]
+        hs=0
+
+        for(var i=0;i<ri.length;i++){
+            hs=hs+Number(ri[i])
+        }
+        hszh1=[hs-1-1]
+        hszh2=[hs-1]
+        hszh3=[hs+1-1]
+        for(var i=1;i<11;i++){
+            if(Number(i*10+hs-2)<=118){hszh1.push(Number(i*10+hs-2))}
+            if(i*0+hs-1<=69){hszh2.push(Number(i*10+hs-1))}
+            if(Number(i*10+hs)<=118){hszh3.push(Number(i*10+hs))}
+
+        }
+
+        $.ajax({
+        type:"post",//请求服务器载入数据
+        async: false,
+        url:"https://database.deta.sh/v1/c0q3z43t/kl8/query",
+        headers: {
+            "X-API-Key": "c0q3z43t_d5tewaSJztAzJTyFuurzUhAnBBAxns7t",
+            "Content-Type": "application/json"
+        },
+        data:'{"query":[{"xulie?lt":'+1000+'}]}',
+        dataType:'json',
+        success:function(co){
+        xw=co.items
+
+        var bkk=[];
+        for(var i=0;i<xw.length;i++){
+          var ob=new Object();
+          ob.name=xw[i]['xulie'];
+          ob.value=xw[i]['zhi'];
+          bkk.push(ob);
+        }
+        shang=[]
+        zheng=[]
+        jia=[]
+        yz=[]
+        ez=[]
+        sz=[]
+        xw=listSortBy(bkk,'name','asc'); 
+        cd=Math.max(hszh1.length,hszh2.length,hszh3.length)
+        for(var i=0;i<cd;i++){
+            shang.push(xw[hszh1[i]]['value'])
+            zheng.push(xw[hszh2[i]]['value'])
+            jia.push(xw[hszh3[i]]['value'])
+
+        }
+        console.log(shang)
+        sgongs=[z,z,z,z,z,z,z,z,z,z,z,z]
+        schazhi=sgongs.length-shang.length
+
+        for(var i=0;i<shang.length;i++){
+
+            if((Number(sgongs[i])+Number(shang[i]))<=80){
+            jieguo.push(Math.abs(Number(sgongs[i])+Number(shang[i])))
+            yz.push(Math.abs(Number(sgongs[i])+Number(shang[i])))
+            }
+            else{
+                szz=(Number(sgongs[i])+Number(shang[i])).toString()
+                console.log(szz)
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+
+                jieguo.push(Math.abs(zj))
+                yz.push(Math.abs(zj))
+            }
+        }
+        
+        for(var i=0;i<schazhi;i++){
+
+           jieguo.push(0) 
+        }
+
+
+        zgongs=[z,z,z,z,z,z,z,z,z,z,z,z]
+        for(var i=0;i<zheng.length;i++){
+            if((Number(zgongs[i])+Number(zheng[i]))<=80){
+            jieguo.push(Math.abs(Number(zgongs[i])+Number(zheng[i])))
+            ez.push(Math.abs(Number(zgongs[i])+Number(zheng[i])))
+            }
+            else{
+                szz=(Number(zgongs[i])+Number(zheng[i])).toString()
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+                jieguo.push(Math.abs(zj))
+                ez.push(Math.abs(zj))
+            }
+        }
+
+        zchazhi=zgongs.length-zheng.length
+        for(var i=0;i<zchazhi;i++){
+           jieguo.push(0) 
+        }
+
+        jgongs=[z,z,z+3,z,z+1,z-2,z,z,z,z,z,z]
+        for(var i=0;i<jia.length;i++){
+            if((Number(jgongs[i])+Number(jia[i]))<=31){
+            jieguo.push(Math.abs(Number(jgongs[i])+Number(jia[i])))
+            sz.push(Math.abs(Number(jgongs[i])+Number(jia[i])))
+            }
+            else{
+                szz=(Number(jgongs[i])+Number(jia[i])).toString()
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+                jieguo.push(Math.abs(zj))
+                sz.push(Math.abs(zj))
+            }
+        }
+
+        jchazhi=jgongs.length-jia.length
+        for(var i=0;i<jchazhi;i++){
+           jieguo.push(0) 
+        }
+
+
+        for(var i = 0; i< jieguo.length;i++){
+            if(jieguo[i] !=0){
+                hong.push(jieguo[i])
+            }
+        }    
+
+        //汇总完毕，下面排序
+        mz=""
+         var obj4 = {}; 
+         for(var i= 0, l = hong.length; i< l; i++){ 
+                var item = hong[i]; 
+        
+                obj4[item]= (obj4[item] +1 ) || 1; 
+        } 
+        bk=Array.from(new Set(hong));
+        var bkk=[];
+        for(var i=0;i<bk.length;i++){
+          var ob=new Object();
+          ob.name=bk[i];
+          ob.value=parseFloat(obj4[ob.name]);
+          bkk.push(ob);
+        }
+
+        bk=listSortBy(bkk,'name','asc'); 
+
+          for(var i=0;i<bk.length;i++){
+              mz=mz+bk[i]["name"]+"    【"+bk[i]["value"]+"个】"+"\n"
+
+          }
+
+        //以上红球
+            
+          yz=yz.sort(func)
+          ez=ez.sort(func)
+          sz=sz.sort(func)
+          document.getElementById('jieguo').value=mz
+          document.getElementById('shang').value=yz
+          document.getElementById('zheng').value=ez
+          document.getElementById('lshang').value=sz
+        }
+        })
+        break;
 } 
+
 }
-
-
-
-
 
 
 
    </script>
 </body>
-
 </html>
