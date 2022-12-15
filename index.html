@@ -273,16 +273,37 @@ switch(lx) {
         else{
             hs=0
         }
-        if(hs!=0){
-        hszh1=[hs-1-1]
-        hszh2=[hs-1]
-        hszh3=[hs+1-1]
+        if(Number(hang)%10!=0){
+            for(var i=0;i<hang.length;i++){
+                hs=hs+Number(hang[i])
+            }
         }
         else{
-           hszh1=[]
-            hszh2=[]
-            hszh3=[]     
+            hs=0
         }
+        hszh1=[]
+        hszh2=[]
+        hszh3=[] 
+
+        switch(hs) {
+         case 1:
+
+            hszh2.push(Number(0))
+            hszh3.push(Number(1))
+            break;
+         case 2:
+
+            hszh1.push(Number(0))
+            hszh2.push(Number(1))
+            hszh3.push(Number(2))
+            break;
+         case hs>2:
+
+            hszh1.push(Number(hs-2))
+            hszh2.push(Number(hs-1))
+            hszh3.push(Number(hs))
+            break;
+        } 
         for(var i=1;i<7;i++){
             if(Number(i*10+hs)-2<=68){hszh1.push(Number(i*10+hs-2))}
             if(i*0+hs-1<=68){hszh2.push(Number(i*10+hs-1))}
@@ -319,11 +340,9 @@ switch(lx) {
         xw=listSortBy(bkk,'name','asc'); 
         cd=Math.max(hszh1.length,hszh2.length,hszh3.length)
         for(var i=0;i<cd;i++){
-
-            shang.push(xw[hszh1[i]]['value'])
-            zheng.push(xw[hszh2[i]]['value'])
-            jia.push(xw[hszh3[i]]['value'])
-
+            if(i<hszh1.length){shang.push(xw[hszh1[i]]['value'])}
+            if(i<hszh2.length){zheng.push(xw[hszh2[i]]['value'])}
+            if(i<hszh3.length){jia.push(xw[hszh3[i]]['value'])}
         }
         console.log(shang)
         sgongs=[z-1,z,z+1,z,z,z,z]
@@ -582,16 +601,37 @@ switch(lx) {
         else{
             hs=0
         }
-        if(hs!=0){
-        hszh1=[hs-1-1]
-        hszh2=[hs-1]
-        hszh3=[hs+1-1]
+        if(Number(hang)%10!=0){
+            for(var i=0;i<hang.length;i++){
+                hs=hs+Number(hang[i])
+            }
         }
         else{
-           hszh1=[]
-            hszh2=[]
-            hszh3=[]     
+            hs=0
         }
+        hszh1=[]
+        hszh2=[]
+        hszh3=[] 
+
+        switch(hs) {
+         case 1:
+
+            hszh2.push(Number(0))
+            hszh3.push(Number(1))
+            break;
+         case 2:
+
+            hszh1.push(Number(0))
+            hszh2.push(Number(1))
+            hszh3.push(Number(2))
+            break;
+         case hs>2:
+
+            hszh1.push(Number(hs-2))
+            hszh2.push(Number(hs-1))
+            hszh3.push(Number(hs))
+            break;
+        } 
         for(var i=1;i<11;i++){
             if(Number(i*10+hs-2)<=118){hszh1.push(Number(i*10+hs-2))}
             if(i*0+hs-1<=118){hszh2.push(Number(i*10+hs-1))}
@@ -628,10 +668,9 @@ switch(lx) {
         xw=listSortBy(bkk,'name','asc'); 
         cd=Math.max(hszh1.length,hszh2.length,hszh3.length)
         for(var i=0;i<cd;i++){
-            shang.push(xw[hszh1[i]]['value'])
-            zheng.push(xw[hszh2[i]]['value'])
-            jia.push(xw[hszh3[i]]['value'])
-
+            if(i<hszh1.length){shang.push(xw[hszh1[i]]['value'])}
+            if(i<hszh2.length){zheng.push(xw[hszh2[i]]['value'])}
+            if(i<hszh3.length){jia.push(xw[hszh3[i]]['value'])}
         }
         console.log(shang)
         sgongs=[z,z,z,z,z,z,z,z,z,z,z,z]
