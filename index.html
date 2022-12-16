@@ -52,6 +52,7 @@
 
 																<option value="sy">31选7(日期，行数都-1)</option>
 																<option value="kl8">快乐8(日期，行数都-1)</option>
+							    <option value="lhc">六合彩()</option>
 													</select>
                                                     
                                                 </div>
@@ -788,6 +789,215 @@ switch(lx) {
         }
         })
         break;
+ case 'lhc':
+	yues=0
+	ris=0
+    	for(var i=0;i<yue.length;i++){
+                yues=yues+Number(yue[i])
+         }
+	for(var i=0;i<ri.length;i++){
+                ris=ris+Number(ri[i])
+         }
+        z=Number(nian)+Number(yues)+Number(ris)
+        my=[]
+        zc=[]
+        py=[]
+        hs=0
+        if(Number(hang)%10!=0){
+            for(var i=0;i<hang.length;i++){
+                hs=hs+Number(hang[i])
+            }
+        }
+        else{
+            hs=0
+        }
+        if(Number(hang)%10!=0){
+            for(var i=0;i<hang.length;i++){
+                hs=hs+Number(hang[i])
+            }
+        }
+        else{
+            hs=0
+        }
+        hszh1=[]
+        hszh2=[]
+        hszh3=[] 
+
+        switch(hs) {
+         case 1:
+
+            hszh2.push(Number(0))
+            hszh3.push(Number(1))
+            break;
+         case 2:
+
+            hszh1.push(Number(0))
+            hszh2.push(Number(1))
+            hszh3.push(Number(2))
+            break;
+         case hs>2:
+
+            hszh1.push(Number(hs-2))
+            hszh2.push(Number(hs-1))
+            hszh3.push(Number(hs))
+            break;
+        } 
+        for(var i=1;i<11;i++){
+            if(Number(i*10+hs-2)<=56){hszh1.push(Number(i*10+hs-2))}
+            if(i*0+hs-1<=56){hszh2.push(Number(i*10+hs-1))}
+            if(Number(i*10+hs)<=56){hszh3.push(Number(i*10+hs))}
+
+        }
+
+        $.ajax({
+        type:"post",//请求服务器载入数据
+        async: false,
+        url:"https://database.deta.sh/v1/c0q3z43t/lhc/query",
+        headers: {
+            "X-API-Key": "c0q3z43t_d5tewaSJztAzJTyFuurzUhAnBBAxns7t",
+            "Content-Type": "application/json"
+        },
+        data:'{"query":[{"xulie?lt":'+1000+'}]}',
+        dataType:'json',
+        success:function(co){
+        xw=co.items
+
+        var bkk=[];
+        for(var i=0;i<xw.length;i++){
+          var ob=new Object();
+          ob.name=xw[i]['xulie'];
+          ob.value=xw[i]['zhi'];
+          bkk.push(ob);
+        }
+        shang=[]
+        zheng=[]
+        jia=[]
+        yz=[]
+        ez=[]
+        sz=[]
+        xw=listSortBy(bkk,'name','asc'); 
+        cd=Math.max(hszh1.length,hszh2.length,hszh3.length)
+        for(var i=0;i<cd;i++){
+            if(i<hszh1.length){shang.push(xw[hszh1[i]]['value'])}
+            if(i<hszh2.length){zheng.push(xw[hszh2[i]]['value'])}
+            if(i<hszh3.length){jia.push(xw[hszh3[i]]['value'])}
+        }
+        console.log(shang)
+        sgongs=[z,z,z,z,z,z]
+        schazhi=sgongs.length-shang.length
+
+        for(var i=0;i<shang.length;i++){
+
+            if((Number(sgongs[i])+Number(shang[i]))<=80){
+            jieguo.push(Math.abs(Number(sgongs[i])+Number(shang[i])))
+            yz.push(Math.abs(Number(sgongs[i])+Number(shang[i])))
+            }
+            else{
+                szz=(Number(sgongs[i])+Number(shang[i])).toString()
+                console.log(szz)
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+
+                jieguo.push(Math.abs(zj))
+                yz.push(Math.abs(zj))
+            }
+        }
+        
+        for(var i=0;i<schazhi;i++){
+
+           jieguo.push(0) 
+        }
+
+
+        zgongs=[z,z,z,z,z,z]
+        for(var i=0;i<zheng.length;i++){
+            if((Number(zgongs[i])+Number(zheng[i]))<=80){
+            jieguo.push(Math.abs(Number(zgongs[i])+Number(zheng[i])))
+            ez.push(Math.abs(Number(zgongs[i])+Number(zheng[i])))
+            }
+            else{
+                szz=(Number(zgongs[i])+Number(zheng[i])).toString()
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+                jieguo.push(Math.abs(zj))
+                ez.push(Math.abs(zj))
+            }
+        }
+
+        zchazhi=zgongs.length-zheng.length
+        for(var i=0;i<zchazhi;i++){
+           jieguo.push(0) 
+        }
+
+        jgongs=[z,z,z,z,z,z]
+        for(var i=0;i<jia.length;i++){
+            if((Number(jgongs[i])+Number(jia[i]))<=31){
+            jieguo.push(Math.abs(Number(jgongs[i])+Number(jia[i])))
+            sz.push(Math.abs(Number(jgongs[i])+Number(jia[i])))
+            }
+            else{
+                szz=(Number(jgongs[i])+Number(jia[i])).toString()
+                zj=0
+                for(var j=0;j<szz.length;j++){
+                    zj=zj+Number(szz[j])
+                }
+                jieguo.push(Math.abs(zj))
+                sz.push(Math.abs(zj))
+            }
+        }
+
+        jchazhi=jgongs.length-jia.length
+        for(var i=0;i<jchazhi;i++){
+           jieguo.push(0) 
+        }
+
+
+        for(var i = 0; i< jieguo.length;i++){
+            if(jieguo[i] !=0){
+                hong.push(jieguo[i])
+            }
+        }    
+
+        //汇总完毕，下面排序
+        mz=""
+         var obj4 = {}; 
+         for(var i= 0, l = hong.length; i< l; i++){ 
+                var item = hong[i]; 
+        
+                obj4[item]= (obj4[item] +1 ) || 1; 
+        } 
+        bk=Array.from(new Set(hong));
+        var bkk=[];
+        for(var i=0;i<bk.length;i++){
+          var ob=new Object();
+          ob.name=bk[i];
+          ob.value=parseFloat(obj4[ob.name]);
+          bkk.push(ob);
+        }
+
+        bk=listSortBy(bkk,'name','asc'); 
+
+          for(var i=0;i<bk.length;i++){
+              mz=mz+bk[i]["name"]+"    【"+bk[i]["value"]+"个】"+"\n"
+
+          }
+
+        //以上红球
+            
+          yz=yz.sort(func)
+          ez=ez.sort(func)
+          sz=sz.sort(func)
+          document.getElementById('jieguo').value=mz
+          document.getElementById('shang').value=yz
+          document.getElementById('zheng').value=ez
+          document.getElementById('lshang').value=sz
+        }
+        })
+        break;		
 } 
 
 }
