@@ -228,8 +228,8 @@ for(var i=0;i<year.toString().length;i++){
 }
 document.getElementById('nian').value=z
 document.getElementById('yue').value=month
-document.getElementById('ri').value=date-1
-document.getElementById('hang').value=date-1
+document.getElementById('ri').value=date
+document.getElementById('hang').value=date
 lsgc()
 }
 
@@ -790,12 +790,12 @@ switch(lx) {
         })
         break;
  case 'lhc':
-	yues=0
-	ris=0
-    	for(var i=0;i<yue.length;i++){
+    yues=0
+    ris=0
+        for(var i=0;i<yue.length;i++){
                 yues=yues+Number(yue[i])
          }
-	for(var i=0;i<ri.length;i++){
+    for(var i=0;i<ri.length;i++){
                 ris=ris+Number(ri[i])
          }
         z=Number(nian)+Number(yues)+Number(ris)
@@ -843,12 +843,15 @@ switch(lx) {
             break;
         } 
         for(var i=1;i<6;i++){
+
             if(Number(i*10+hs-2)<=56){hszh1.push(Number(i*10+hs-2))}
             if(i*10+hs-1<=56){hszh2.push(Number(i*10+hs-1))}
             if(Number(i*10+hs)<=56){hszh3.push(Number(i*10+hs))}
 
         }
-
+        console.log(hszh1)
+        console.log(hszh2)
+        console.log(hszh3)
         $.ajax({
         type:"post",//请求服务器载入数据
         async: false,
@@ -861,7 +864,7 @@ switch(lx) {
         dataType:'json',
         success:function(co){
         xw=co.items
-
+        console.log(xw)
         var bkk=[];
         for(var i=0;i<xw.length;i++){
           var ob=new Object();
@@ -888,7 +891,7 @@ switch(lx) {
 
         for(var i=0;i<shang.length;i++){
 
-            if((Number(sgongs[i])+Number(shang[i]))<=56){
+            if((Number(sgongs[i])+Number(shang[i]))<=49){
             jieguo.push(Math.abs(Number(sgongs[i])+Number(shang[i])))
             yz.push(Math.abs(Number(sgongs[i])+Number(shang[i])))
             }
@@ -913,7 +916,7 @@ switch(lx) {
 
         zgongs=[z,z,z,z,z,z]
         for(var i=0;i<zheng.length;i++){
-            if((Number(zgongs[i])+Number(zheng[i]))<=56){
+            if((Number(zgongs[i])+Number(zheng[i]))<=49){
             jieguo.push(Math.abs(Number(zgongs[i])+Number(zheng[i])))
             ez.push(Math.abs(Number(zgongs[i])+Number(zheng[i])))
             }
@@ -935,7 +938,7 @@ switch(lx) {
 
         jgongs=[z,z,z,z,z,z]
         for(var i=0;i<jia.length;i++){
-            if((Number(jgongs[i])+Number(jia[i]))<=56){
+            if((Number(jgongs[i])+Number(jia[i]))<=49){
             jieguo.push(Math.abs(Number(jgongs[i])+Number(jia[i])))
             sz.push(Math.abs(Number(jgongs[i])+Number(jia[i])))
             }
