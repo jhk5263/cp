@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="referrer" content="no-referrer"/>
+<meta name="referrer" content="never"/>
+<meta name="referrer" content="same-origin"/>
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+    <!-- ================= Favicon ================== -->
+    <!-- Standard -->
+        <link rel="shortcut icon" href="/favicon.ico">
+    <!-- Styles -->
+           <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
+           <link href="assets/css/style.css" rel="stylesheet">
+           <link href="assets/css/lib/themify-icons.css" rel="stylesheet">
+           <title>百家乐计算</title>
+    <script>
+    </script>
+</head>
+
+<body class="bg-primary" >
+
+    <div class="unix-login">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="login-content">
+                        <div class="login-logo">
+                            <span style="color:#000000">百家乐计算</span>
+
+                        </div>
+                         <div class="card">
+                  
+                             <div class="card-title" id="tou" >
+
+                                           
+                                 </div>
+
+                                <div class="card-body">
+                                    <div class="input-sizes">
+                                        <form class="form-horizontal fc-view" >
+                                                  
+  
+                                         <div class="form-group" >   
+                                           <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-2">
+                                                <input id="xian1" type="text" placeholder="闲牌1" class="form-control"  name="example-input-small" lay-key="1" >
+                                                </div>
+                                                <div class="col-lg-3">
+                                                <input id="xian2" type="text" placeholder="闲牌2" class="form-control"  name="example-input-small" lay-key="1" >
+                                                </div>
+                                                <div class="col-lg-3">
+                                                <input id="xian3" type="text" placeholder="闲牌3" class="form-control"  name="example-input-small" lay-key="1" value="0">
+                                                </div>
+                                            </div> 
+                                           
+                                           
+                                   </div>
+                                         <div class="form-group" >   
+                                           <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-2">
+                                                <input id="zhuang1" type="text" placeholder="庄牌1" class="form-control"  name="example-input-small" lay-key="1" >
+                                                </div>
+                                                <div class="col-lg-3">
+                                                <input id="zhuang2" type="text" placeholder="庄牌2" class="form-control"  name="example-input-small" lay-key="1" >
+                                                </div>
+                                                <div class="col-lg-3">
+                                                <input id="zhuang3" type="text" placeholder="庄牌3" class="form-control"  name="example-input-small" lay-key="1" value="0" onblur="lsgc()">
+                                                </div>
+                                            </div> 
+                                           
+                                           
+                                   </div>                                      
+                                   <div class="form-group" >
+                                            <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <input id="jieguo" type="text" placeholder="" class="form-control"  name="example-input-small" lay-key="1" >
+                                                    
+                                                </div>
+               
+                                            </div>    
+          
+                                    </div>
+                                         <div class="form-group" >   
+                                           <div class="row">
+                                                  <div class="col-lg-2"></div><span style="color:green">手牌出对下把必是对方赢(两边不是同时+5 +10的情况)手牌+公牌不算</span>
+                                            </div> 
+                                           <div class="row">
+                                                  <div class="col-lg-2"></div><span style="color:red;margin-top:1%">全部补牌时  当1位数和2位数比较时选个位数 </span>
+                                            </div>                                            
+                                           <div class="row">
+                                                  <div class="col-lg-2"></div><span style="color:red;margin-top:1%">补牌全为0 看手牌是否有大数 大数反着(数量少的那边有2个大牌不反买)，其他情况全看实数 </span>
+                                            </div>   
+                                           <!--<div class="row">-->
+                                           <!--       <div class="col-lg-2"></div><span style="color:red;margin-top:1%">当局有对下局不出手</span>-->
+                                           <!-- </div> -->
+                                   </div>       
+
+                                   
+            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+       <script src="assets/js/lib/jquery.min.js"></script>
+    <script src="assets/laydate/laydate.js"></script>
+    <script src="assets/layer_mobile/layer.js"></script>
+    <script src="js/date.format.js"></script>
+    <script src="js/gbk.js"></script>
+   <script>
+$(function(){
+    laydate.render({
+  elem: '#Time'
+  ,type: 'datetime'
+
+  ,zIndex: 99999999
+  ,format: 'yyyy-MM-dd'
+});
+
+
+});   
+   
+   
+   
+   document.onkeydown = keyListener;
+function keyListener(e) {
+// 当按下回车键，执行我们的代码
+    if (e.keyCode == 13) {
+SubInfo();
+    }
+}
+
+function func(a,b){
+    return a-b;
+}
+  function listSortBy(arr, field, order){
+    var refer = [], result=[], order = order=='asc'?'asc':'desc', index;
+    for(i=0; i<arr.length; i++){
+        refer[i] = arr[i][field]+':'+i;
+    }
+        refer.sort(function (a,b) {
+            a=parseFloat(a);
+            b=parseFloat(b);
+            if (a < b ) {    
+                return -1;
+            }
+            if (a > b ) {
+                return 1;
+            }
+            // a must be equal to b
+            return 0;
+        });
+
+
+    if(order=='desc') refer.reverse();
+    for(i=0;i<refer.length;i++){
+        index = refer[i].split(':')[1];
+        result[i] = arr[index];
+    }
+    return result;
+}
+function checkTime(i){
+    if (i<10) 
+  {i="0" + i}
+  
+  return i
+ 
+};
+function charu(soure, start, newStr){   
+   return soure.slice(0, start) + newStr + soure.slice(start);
+}
+
+       
+       
+
+function formatt(now){
+          var   year=checkTime(now.getFullYear());   
+          var   month=checkTime(now.getMonth()+1);   
+          var   date=checkTime(now.getDate());   
+          var   hour=checkTime(now.getHours());   
+          var   minute=checkTime(now.getMinutes());   
+          var   second=checkTime(now.getSeconds());   
+          return  hour+":"+minute+":"+second;   
+}
+
+
+ 
+
+
+
+function lsgc(){
+xian1=$("#xian1").val();    
+xian2=$("#xian2").val(); 
+xian3=$("#xian3").val(); 
+zhuang1=$("#zhuang1").val();    
+zhuang2=$("#zhuang2").val(); 
+zhuang3=$("#zhuang3").val(); 
+if(xian1==2 || xian1==3 || xian1==4 || xian1==5 || xian1==6 || xian1==9){
+    xian1=5
+}
+if(xian1==7 || xian1==8 ){
+    xian1=-5
+}
+if(xian1==1 || xian1==10 || xian1==11 ||xian1==12 || xian1==13 ){
+    xian1=1
+}
+if(xian2==2 || xian2==3 || xian2==4 ||xian2==5 || xian2==6 || xian2==9){
+    xian2=5
+}
+if(xian2==7 || xian2==8 ){
+    xian2=-5
+}
+if(xian2==1 || xian2==10 || xian2==11 ||xian2==12 || xian2==13 ){
+    xian2=1
+}
+if(zhuang1==2 || zhuang1==3 || zhuang1==4 || zhuang1==5 || zhuang1==6 || zhuang1==9){
+    zhuang1=5
+}
+if(zhuang1==7 || zhuang1==8 ){
+    zhuang1=-5
+}
+if(zhuang1==1 || zhuang1==10 || zhuang1==11 ||zhuang1==12 || zhuang1==13 ){
+    zhuang1=1
+}
+if(zhuang2==2 || zhuang2==3 || zhuang2==4 ||zhuang2==5 || zhuang2==6 || zhuang2==9){
+    zhuang2=5
+}
+if(zhuang2==7 || zhuang2==8 ){
+    zhuang2=-5
+}
+if(zhuang2==1 || zhuang2==10 || zhuang2==11 ||zhuang2==12 || zhuang2==13 ){
+    zhuang2=1
+}
+xianjie=(Number(xian1)+Number(xian2)+Number(xian3))
+zhuangjie=(Number(zhuang1)+Number(zhuang2)+Number(zhuang3))
+document.getElementById('jieguo').value='闲：'+xianjie+'    庄：'+zhuangjie 
+
+if(zhuang3==0 || xian3==0){
+    console.log('进来了')
+        if(xian1==10 || xian1==11 ||xian1==12 || xian1==13 ){
+        xian1=0
+    }
+    if(xian2==10 || xian2==11 ||xian2==12 || xian2==13 ){
+         xian2=0
+    }
+
+    if(zhuang1==10 || zhuang1==11 ||zhuang1==12 || zhuang1==13 ){
+    zhuang1=0
+    }
+    if(zhuang2==10 || zhuang2==11 ||zhuang2==12 || zhuang2==13 ){
+        zhuang2=0
+    }
+
+   document.getElementById('jieguo').value='闲真数：'+(Number(xian1)+Number(xian2))+'    庄真数：'+(Number(zhuang1)+Number(zhuang2))+'【相同可以考虑下和，然后对面手牌数字大小下庄闲】' 
+    //document.getElementById('jieguo').value='比手牌数字大小'
+    
+}
+if(zhuang3!=0 && xian3!=0){
+    xian1=$("#xian1").val();    
+    xian2=$("#xian2").val(); 
+    xian3=$("#xian3").val(); 
+    zhuang1=$("#zhuang1").val();    
+    zhuang2=$("#zhuang2").val(); 
+    zhuang3=$("#zhuang3").val(); 
+    if(xian1==10 || xian1==11 ||xian1==12 || xian1==13 ){
+        xian1=0
+    }
+    if(xian2==10 || xian2==11 ||xian2==12 || xian2==13 ){
+         xian2=0
+    }
+    if(xian3==10 || xian3==11 ||xian3==12 || xian3==13 ){
+    xian3=0
+    }
+    if(zhuang1==10 || zhuang1==11 ||zhuang1==12 || zhuang1==13 ){
+    zhuang1=0
+    }
+    if(zhuang2==10 || zhuang2==11 ||zhuang2==12 || zhuang2==13 ){
+        zhuang2=0
+    }
+    if(zhuang3==10 || zhuang3==11 ||zhuang3==12 || zhuang3==13 ){
+        zhuang3=0
+    }
+    
+    xjg=(Number(xian1)+Number(xian2));
+    if(xjg>9){xjg=xjg-10}
+    if((xjg+Number(xian3))>9){xjg=(xjg+Number(xian3))-10}else{xjg=(xjg+Number(xian3))}
+    zjg=(Number(zhuang1)+Number(zhuang2));
+    if(zjg>9){zjg=zjg-10}
+    if((zjg+Number(zhuang3))>9){zjg=(zjg+Number(zhuang3))-10}else{zjg=(zjg+Number(zhuang3))}
+    if(xjg>zjg){
+        document.getElementById('jieguo').value='闲：'+(xianjie+5)+'    庄：'+zhuangjie
+    }
+    else{
+        document.getElementById('jieguo').value='闲：'+xianjie+'    庄：'+(zhuangjie+5)
+    }
+
+}
+
+}
+
+
+
+   </script>
+</body>
+</html>
